@@ -38,7 +38,7 @@
     <!-- Navbar -->
     <nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ site.baseurl }}/index.html"><strong><img src="{{ site.baseurl }}/assets/images/logo.jpg" style="height: 50px;"></strong></a>
+        <a class="navbar-brand" href="{{ site.baseurl }}/"><strong><img src="{{ site.baseurl }}/assets/images/logo.jpg" style="height: 50px; pointer-events: none;"></strong></a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -77,12 +77,8 @@
         <div class="container">
         <div class="row align-items-center justify-content-between">
             <div>
-                <span class="navbar-brand mr-2 mb-0"><strong>wattsperkilo</strong></span>
+                <span class="navbar-brand mr-2 mb-0"><strong>{{site.name}}</strong></span>
                 <span>Copyright © <script>document.write(new Date().getFullYear())</script>.</span>
-
-            </div>
-            <div>
-                <!-- Made with <a target="_blank" class="text-dark font-weight-bold" href="https://www.wowthemes.net/mundana-jekyll-theme/"> Mundana Jekyll Theme </a> by <a class="text-dark" target="_blank" href="https://www.wowthemes.net">WowThemes</a>. -->
             </div>
         </div>
         </div>
