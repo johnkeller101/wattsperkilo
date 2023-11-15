@@ -9,11 +9,11 @@ tags: [pedals, sticky, featured]
 The Xpedo Thrust SL is the lightest look-keo stype pedals on the market by a good margin. I've had experience with Xpedo before, with their light mtb pedals to mixed success, so I decided to take the plunge and order a pair from Amazon International for $227.44 (which is far less than their website).
 
 
-|   | Xpedo Thrust SL (Titanium) | Shimano PD-R9100 Dura Ace Pedal | Wahoo Speedplay Zero Pedals |
+|   | Xpedo Thrust SL (Titanium) | Shimano PD-R9100 Dura Ace Pedals | Wahoo Speedplay Zero Pedals |
 |---|----------------------------|---------------------------------|-----------------------------|
 | Weight (pair) | 168g | 228g | 220g |
 | Price (USD) | $229.99 | $280.00 | $255.00 |
-| Purchase | Amazon | Amazon | Amazon |
+| Purchase | <a href="https://amzn.to/3MKuRPw">Amazon</a> | <a href="https://amzn.to/3SPBCTE">Amazon</a> | <a href="https://amzn.to/3MJXhJm">Amazon</a> |
 
 
 ## Early Issues
@@ -30,11 +30,11 @@ The bearings which were causing the most issue for me were the larger ones, so I
 
 I decided to send them in for repair, again. I pleaded with the support person to cover shipping, and they did relucantly. So off they went again. This time, they replaced both pedal bodies, and it seems I got a revisioned body. The metal washer was now longer, and actually prevented any side to side play, which seemed to be an oversight in the first version I had.
 
-Anyways, the new pedal bodies worked great. There was still issues with one of the bearings, so I replaced them to pre proactive. I had bought [a kit of 10 bearings](https://www.amazon.com/gp/product/B00NKS7BP6), so figured I might as well use them. Anyways, another thousand miles and they started creaking. This time when I was in Spain and without replacement bearings. On the spot, I ordered some new pedals, which will be talked about in a future post.
+Anyways, the new pedal bodies worked great. There was still issues with one of the bearings, so I replaced them to pre proactive. I had bought [a kit of 10 bearings](https://amzn.to/3MJSA22), so figured I might as well use them. Anyways, another thousand miles and they started creaking. This time when I was in Spain and without replacement bearings. On the spot, I ordered some new pedals, which will be talked about in a future post.
 
 ## Bad Tollerances
 
-My analysis is that between the pedal body and spindle, there are bad tollerances all around which are wrecking the bearings. I've given up. I have extra bearings to replace, but I would have to replace them proactivly every 1000 miles (or less). For a [$255 pedal](https://xpedo.com/product/pedals/road/thrust-sl/), this is pretty unacceptable.
+My analysis is that between the pedal body and spindle, there are bad tollerances all around which are wrecking the bearings. I've given up. I have extra bearings to replace, but I would have to replace them proactivly every 1000 miles (or less). For a [$255 MSRP pedal](https://xpedo.com/product/pedals/road/thrust-sl/), this is pretty unacceptable.
 
 ## Verdict
 
