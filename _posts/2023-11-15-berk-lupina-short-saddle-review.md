@@ -9,7 +9,7 @@ tags: [pedals, featured]
 
 One the most popular weight-weenie saddles has been the Berk Lupina. It's a boutique brand out of Slovenia that was founded by a like-minded bike nerd who wanted to find a lightweight but durable saddle. I've historically been a fan of the Specialized Power saddle, but have recently switched to the Romin saddle for improved comfort when climbing and in the aero position. Berk's new Lupina Short slots  in the middle between the two in terms of length, and I love it.
 
-<img src="assets/images/berk_lupina_short_weight.jpg">
+<img src="/assets/images/berk_lupina_short_weight.jpg">
 
 ### Tested
 
