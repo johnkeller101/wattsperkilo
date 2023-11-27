@@ -13,7 +13,7 @@ image: 'assets/images/logo.jpg'
 {% if page.url == "/" %}
     
     
-    
+{% if site.posts.size > 0 %}
 <!-- Begin post excerpts, let's highlight the first 4 posts on top -->
 <div class="row remove-site-content-margin">
     
@@ -50,7 +50,8 @@ image: 'assets/images/logo.jpg'
     <div class="col-md-6">
         
         <!-- second latest post -->
-        {%- assign second_post = site.posts[1] -%}        
+        {%- assign second_post = site.posts[1] -%}
+        {% if second_post.date != nil  %}
         <div class="mb-3 d-flex align-items-center">                
                 {% if second_post.image %}
                 <div class="col-md-4">
@@ -75,9 +76,11 @@ image: 'assets/images/logo.jpg'
                     </small>
                 </div>
             </div>
+        {% endif %}  
         
         <!-- third latest post -->
-        {%- assign third_post = site.posts[2] -%}        
+        {%- assign third_post = site.posts[2] -%}
+        {% if third_post.date != nil  %}
         <div class="mb-3 d-flex align-items-center">                
                 {% if third_post.image %}
                 <div class="col-md-4">
@@ -102,9 +105,11 @@ image: 'assets/images/logo.jpg'
                     </small>
                 </div>
             </div>
+        {% endif %}
         
         <!-- fourth latest post -->
-        {%- assign fourth_post = site.posts[3] -%}        
+        {%- assign fourth_post = site.posts[3] -%}  
+        {% if fourth_post.date != nil  %}      
         <div class="mb-3 d-flex align-items-center">                
                 {% if fourth_post.image %}
                 <div class="col-md-4">
@@ -129,10 +134,11 @@ image: 'assets/images/logo.jpg'
                     </small>
                 </div>
             </div>
-        
+        {% endif %}
     </div>
 </div>
-    
+{% endif %}
+
 <!-- Sticky - add sticky tag to the post you want to highlight here - tags: [sticky] -->
 {% for post in site.posts %} 
 {% if post.tags contains "sticky" %}
@@ -167,9 +173,9 @@ image: 'assets/images/logo.jpg'
 <div class="row mt-3">
    
     <div class="col-md-8 main-loop">
-        
+        {% if site.posts.size > 4 %}
         <h4 class="font-weight-bold spanborder"><span>All Stories</span></h4>
-        
+        {% endif %}
 
         {% for post in paginator.posts %}
         

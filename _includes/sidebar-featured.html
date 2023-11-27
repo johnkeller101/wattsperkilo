@@ -1,3 +1,4 @@
+{% if site.tags.featured.size > 5%}
 <div class="sticky-top sticky-top-offset">
     <h4 class="font-weight-bold spanborder"><span>Featured</span></h4>  
     <ol class="list-featured">				
@@ -18,4 +19,5 @@
             </li>                
         {% endfor %}   
     </ol>
-</div> 
+</div>
+{% endif %}
