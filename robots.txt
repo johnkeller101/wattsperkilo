@@ -1,0 +1,10 @@
+---
+layout: none
+---
+Sitemap: {{ site.url }}/sitemap.xml
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
