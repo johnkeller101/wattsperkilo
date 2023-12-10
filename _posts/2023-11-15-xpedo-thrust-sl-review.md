@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Xpedo Thrust SL Titanium"
+title:  "Xpedo Thrust SL Titanium Review"
 author: john
 categories: [ reviews ]
 image: assets/images/xpedo_thrust_sl.jpg

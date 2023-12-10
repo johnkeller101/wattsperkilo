@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Sixwheel 12 Speed Cassette"
+title:  "Sixwheel 12 Speed Cassette Review (Long Term)"
 author: john
 categories: [ reviews ]
 image: assets/images/sixwheel_thumbnail.jpg

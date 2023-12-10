@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Berk Lupina Short Saddle"
+title:  "Berk Lupina Short Saddle Review"
 author: john
 categories: [ reviews ]
 image: assets/images/berk_lupina_short.jpg
