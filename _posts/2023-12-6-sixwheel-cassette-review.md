@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Sixwheel 12 Speed Cassette Review (Long Term)"
+title:  "Sixwheel 12 Speed Cassette Review"
 author: john
 categories: [ reviews ]
 image: assets/images/sixwheel_thumbnail.jpg
@@ -12,7 +12,7 @@ The search for saving grames is not always about pure weight savings, sometimes 
 <a href="https://www.recon.bike/product_d.php?lang=en&tb=1&id=216"><img src="{{ site.baseurl }}/assets/images/recon-alu.png" style="display:block; margin-left: auto; margin-right: auto; max-height:300px;">
 <i>Recon One-Piece Aluminum Cassette - $270 - 133g</i></a>
 
-The first is to get a aluminum cassette. These are made by a few different companies, but all come out of the same factory from what I understand ([Recon cassettes](https://www.recon.bike)). They are made in a variety of sizes and types, the lightest of which for 12-speed is the aluminum cassette. These are race-day only, so expect them to wear fast and break teeth if you try to put too much torque down. As someone who puts out higher power and rides up very steep hills, probably not ideal. Although let's wait and see if I end up getting one at the end of this ;)
+The first is to get an aluminum cassette. These are made by a few different companies, but all come out of the same factory from what I understand ([Recon cassettes](https://www.recon.bike)). They are made in a variety of sizes and types, the lightest of which for 12-speed is the aluminum cassette. These are race-day only, so expect them to wear fast and break teeth if you try to put too much torque down. As someone who puts out higher power and rides up very steep hills, probably not ideal. Although let's wait and see if I end up getting one at the end of this ;)
 
 <a href="https://www.recon.bike/product_d.php?lang=en&tb=1&id=196"><img src="{{ site.baseurl }}/assets/images/recon-chromoly.gif" style="display:block; margin-left: auto; margin-right: auto; max-height:300px;">
 <i>Recon One-Piece Chromoly Cassette - $250 - 205g</i></a>
