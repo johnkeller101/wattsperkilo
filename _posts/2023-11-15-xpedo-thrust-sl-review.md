@@ -4,7 +4,7 @@ title:  "Xpedo Thrust SL Titanium Review"
 author: john
 categories: [ reviews ]
 image: assets/images/xpedo_thrust_sl.jpg
-tags: [pedals, sticky, featured]
+tags: [pedals, featured]
 ---
 The Xpedo Thrust SL is the lightest look-keo style pedals on the market by a good margin. I've had experience with Xpedo before, with their light mtb pedals to mixed success, so I decided to take the plunge and order a pair from Amazon International for $227.44 (which is far less than their website).
 

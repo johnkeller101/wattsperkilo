@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CRW Works CS5060 First Ride Impressions"
+title: "CRW Works CS5060"
 author: john
 categories: [ wheels, first ride ]
 image: assets/images/crw_works_weight.jpg
