@@ -2,7 +2,7 @@
  * Mundana Jekyll Theme (https://www.wowthemes.net/mundana-jekyll-theme/)
  */
 
-body {
+ body {
 	overflow-x:hidden;
 	padding-top:69.75px;
 }
@@ -42,6 +42,36 @@ a.text-dark:hover {
 .z-index-1 {
 	z-index:1;
 }
+
+/* Add table styles with borders and 100% width */
+table {
+	width: 100%;
+	margin-bottom: 1rem;
+	border-collapse: collapse;
+	background-color: transparent;
+	border: 1px solid #dee2e6;
+}
+
+table th,
+table td {
+	padding: 0.75rem;
+	vertical-align: top;
+	border: 1px solid #dee2e6;
+}
+
+table thead th {
+	vertical-align: bottom;
+	border: 1px solid #dee2e6;
+	border-bottom: 2px solid #dee2e6;
+	background-color: #f8f9fa;
+}
+
+table tbody + tbody {
+	border-top: 2px solid #dee2e6;
+}
+
+/* End table styles */
+
 @media (max-width:991.98px) {
 	.display-3 {
 		font-size:3.5rem;
@@ -673,7 +703,7 @@ article blockquote {
 	position:relative;
 }
 article blockquote:before {
-	content:"“";
+	content:""";
 	font-family:Georgia;
 	font-size:8rem;
 	margin:-1rem 2rem 0 -3.9rem;
@@ -803,4 +833,3 @@ div.a2a_full_footer {display:none;}
 		 height:280px !Important;
 	 }
  }
- 
