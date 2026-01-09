@@ -4,7 +4,9 @@ title: "CRW Works CS5060"
 author: john
 categories: [ wheels, first ride ]
 image: assets/images/crw_works_weight.jpg
-tags: [first ride]
+outline: assets/images/outlines/crw-cs5060.svg
+summary: "Some of the lightest affordable aero wheels on the market. Hooked rims, minimal logos, and replaceable bearings - first ride impressions."
+date: 2024-01-06
 ---
 
 The Craft Racing Works wheels are some of the lightest-but-still-affordable aero wheels on the market. For me, they check all the boxes:

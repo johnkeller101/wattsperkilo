@@ -4,14 +4,17 @@ title:  "Xpedo Thrust SL Titanium Review"
 author: john
 categories: [ reviews ]
 image: assets/images/xpedo_thrust_sl.jpg
-tags: [pedals, featured]
+outline: assets/images/outlines/xpedo-thurst-sl.svg
+summary: "The lightest Look-Keo pedals by a good margin at 168g. After multiple warranty claims and bearing replacements, here's where I landed."
+date: 2023-11-15
+updated: 2026-01-09
 ---
 The Xpedo Thrust SL is the lightest look-keo style pedals on the market by a good margin. I've had experience with Xpedo before, with their light mtb pedals to mixed success, so I decided to take the plunge and order a pair from Amazon International for $227.44 (which is far less than their website).
 
 
 |   | Xpedo Thrust SL (Titanium) | Shimano PD-R9100 Dura Ace Pedals | Wahoo Speedplay Zero Pedals |
 |---|----------------------------|---------------------------------|-----------------------------|
-|  | <img src="/assets/images/xpedo_thrust_sl_comparison.jpg" style="max-width: 150px;"> | <img src="/assets/images/shimano_r9100_pedals.jpg" style="max-width: 150px;"> | <img src="/assets/images/wahoo_speedplay_zero.jpg" style="max-width: 150px;"> |
+|  | <img src="/assets/images/xpedo_thrust_sl_comparison.svg" style="max-width: 150px;"> | <img src="/assets/images/shimano_r9100_pedals.svg" style="max-width: 150px;"> | <img src="/assets/images/wahoo_speedplay_zero.svg" style="max-width: 150px;"> |
 | Weight (pair) | 168g | 228g | 220g |
 | Price (USD) | $229.99 | $280.00 | $255.00 |
 | Purchase | <a href="https://amzn.to/3MKuRPw">Amazon</a> | <a href="https://amzn.to/3SPBCTE">Amazon</a> | <a href="https://amzn.to/3MJXhJm">Amazon</a> |

@@ -4,7 +4,8 @@ title:  "Pro Cyclist MCL + ACL Tear Recovery"
 author: john
 categories: [ training ]
 image: assets/images/acl/outside_ride.jpg
-tags: [training, featured]
+summary: "My 9-month journey from ACL + MCL tears back to 20+ hour training weeks. Detailed timeline with power data for anyone going through something similar."
+date: 2025-04-04
 ---
 
 Hopefully this answers some general questions for others. I will do my best to respond to comments at the end if you have any!
@@ -41,7 +42,7 @@ I also got a CPM machine to use prior to starting PT, which helped tremendously.
 
 I started PT at CU sports medicine 4 days post-op. I was still using the walker with an arm extension, since I couldn't use crutches with my broken hand. Everything was reset from the previous prehab in terms of flexion and swelling, but things were a lot more normal without the MCL pain. We spent the majority of time focusing on straightening the knee, not bending it, as the first two weeks are essential for that.
 
-<img src="/assets/images/acl/wk3-4.png" style="width:100%">
+<img src="/assets/images/acl/wk3-4.png" class="wide">
 
 My knee range of motion at this point was limited to 40 degrees, and I couldn't perform a straight leg raise without a significant lag. We started with quad activation exercises using NMES (neuromuscular electrical stimulation) for 10 minutes and basic knee range of motion exercises.
 
@@ -66,7 +67,7 @@ On my first real Zwift session just over 2 weeks post-surgery, I was only able t
 
 To manage swelling during these early trainer sessions, I used an ice vest which helped keep my core temperature down and reduced the post-ride inflammation. I'd freeze the ice packs overnight and put them in the vest right before getting on the trainer. This made a huge difference in how my knee felt both during and after rides.
 
-<img src="/assets/images/acl/85-825.png" style="width:100%">
+<img src="/assets/images/acl/85-825.png" class="wide">
 
 At my two week follow up, the surgeon said everything was on track and my swelling was looking as expected. The focus was still on doing everything I could to reduce swelling. Over the following two weeks, it became clear that riding the trainer did not increase swelling the same way walking did, so my days turned into either being on the couch or trainer and not much in between. I kept the intensity low, but started to slowly increase the time on the trainer until I got the all clear at the 6 week mark from the surgeon.
 
@@ -74,7 +75,7 @@ One key discovery during this period was how effective the ice vest was for long
 
 ## Phase 3: Weeks 3-6 Post-Op
 
-<img src="/assets/images/acl/826-915.png" style="width:100%">
+<img src="/assets/images/acl/826-915.png" class="wide">
 
 During weeks 3-6, I continued to make solid progress. By week 3, I was able to ride at higher RPMs (around 80) without immediately needing ice afterward. I was visiting PT twice weekly, and we focused heavily on exercises like NMES for quad activation, straight leg raises, terminal knee extensions with resistance bands, and various mobility work.
 
@@ -109,7 +110,7 @@ I met with the surgeon for the 6 week follow up. I knew my progress was going we
 
 I was told to only increase training volume in 10% increments every few days, and I followed that _religiously_. I never missed a ride and was able to have a linear increase on my weekly/daily volume almost perfectly.
 
-<img src="/assets/images/acl/916-929.png" style="width:100%">
+<img src="/assets/images/acl/916-929.png" class="wide">
 
 ### Cycling Progression (Weeks 6-12)
 

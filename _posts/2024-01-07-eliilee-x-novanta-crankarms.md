@@ -4,7 +4,9 @@ title: "ELILEE X-Novanta Crankarms"
 author: john
 categories: [ cranks, first ride ]
 image: assets/images/elilee_thumb.jpg
-tags: [first ride]
+outline: assets/images/outlines/elilee-x-novanta.svg
+summary: "For ~40g more than THM, you get a metal spindle interface that won't loosen, plus preload adjustment and 4/5-bolt chainring options."
+date: 2024-01-07
 ---
 
 After having a friend try out these cranks for a few months, I finally decided to pull the trigger and test them out. They sell two different versions, one with an aluminum 24mm spindle, and one with a 28mm spindle (which can be adapted to DUB or 30mm using included spacers). The 24mm spindle is heavier, and made of aluminum, which has been known to crack at times. The overall weight might be the same, as the 30mm spindle requires a heavier bottom bracket. 

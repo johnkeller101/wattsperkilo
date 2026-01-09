@@ -1,0 +1,33 @@
+<article class="card h-100">
+    {% if post.outline or post.image %}
+    {% assign color_index = post.title | size | modulo: 6 | plus: 1 %}
+    <a href="{{site.baseurl}}{{post.url}}" {% if post.outline %}class="outline-bg-{{ color_index }}"{% endif %}>
+        {% if post.outline %}
+        <img src="{{site.baseurl}}/{{ post.outline }}" class="card-img-top p-3" alt="{{ post.title }}" style="aspect-ratio: 4/3; object-fit: contain;">
+        {% else %}
+        <img src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{site.baseurl}}/{{ post.image }}{% endif %}" class="card-img-top" alt="{{ post.title }}" style="aspect-ratio: 4/3; object-fit: cover;">
+        {% endif %}
+    </a>
+    {% endif %}
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+                {% for category in post.categories %}
+                <a href="{{site.baseurl}}/{{ category | downcase | replace: ' ', '-' }}/" class="badge bg-primary text-decoration-none me-1">{{ category | capitalize }}</a>
+                {% endfor %}
+            </div>
+            <small class="text-body-secondary">{{ post.date | date: '%B %-d, %Y' }}</small>
+        </div>
+        <h5 class="card-title fw-bold">
+            <a href="{{site.baseurl}}{{post.url}}" class="text-decoration-none text-body">{{ post.title }}</a>
+        </h5>
+        <p class="card-text text-body-secondary">
+            {{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 150 }}
+        </p>
+    </div>
+    {% if include.show_footer %}
+    <div class="card-footer bg-transparent border-0">
+        <a href="{{site.baseurl}}{{post.url}}" class="text-decoration-none">Continue reading &rarr;</a>
+    </div>
+    {% endif %}
+</article>

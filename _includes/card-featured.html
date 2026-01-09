@@ -1,0 +1,35 @@
+<div class="card border-0 bg-body-tertiary featured-post-card">
+    <div class="row g-0 h-100">
+        {% if post.outline or post.image %}
+        {% assign color_index = post.title | size | modulo: 6 | plus: 1 %}
+        <div class="col-md-6 {% if post.outline %}outline-bg-{{ color_index }}{% endif %}">
+            <a href="{{site.baseurl}}{{post.url}}">
+                {% if post.outline %}
+                <img src="{{site.baseurl}}/{{ post.outline }}" class="img-fluid rounded-start h-100 p-4" alt="{{ post.title }}" style="object-fit: contain;">
+                {% else %}
+                <img src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{site.baseurl}}/{{ post.image }}{% endif %}" class="img-fluid rounded-start h-100" alt="{{ post.title }}" style="object-fit: cover;">
+                {% endif %}
+            </a>
+        </div>
+        {% endif %}
+        <div class="col-md-6">
+            <div class="card-body p-4 d-flex flex-column h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        {% for category in post.categories %}
+                        <a href="{{site.baseurl}}/{{ category | downcase | replace: ' ', '-' }}/" class="badge bg-primary text-decoration-none me-1">{{ category | capitalize }}</a>
+                        {% endfor %}
+                    </div>
+                    <small class="text-body-secondary">{{ post.date | date: '%B %-d, %Y' }}</small>
+                </div>
+                <h2 class="card-title fw-bold">
+                    <a href="{{site.baseurl}}{{post.url}}" class="text-decoration-none text-body">{{ post.title }}</a>
+                </h2>
+                <p class="card-text text-body-secondary flex-grow-1">
+                    {{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 250 }}
+                </p>
+                <a href="{{site.baseurl}}{{post.url}}" class="text-decoration-none">Continue reading &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>

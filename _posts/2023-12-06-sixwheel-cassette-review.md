@@ -4,7 +4,9 @@ title:  "Sixwheel 12 Speed Cassette Review"
 author: john
 categories: [ reviews ]
 image: assets/images/sixwheel_thumbnail.jpg
-tags: [cassette, featured]
+outline: assets/images/outlines/sixwheel-cassette.svg
+summary: "At $390, this high-end cassette promised Shimano-quality shifting with weight savings and custom colors. Here's how it held up after 3,000 miles."
+date: 2023-12-06
 ---
 
 The search for saving grames is not always about pure weight savings, sometimes looks start to play a big role. For reference, the Shimano 11-34t cassette weighs in at 253g. When it comes purely to saving weight on cassettes, there are a few options: 

@@ -5,32 +5,45 @@ permalink: "/categories"
 ---
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-        <h1 class="font-weight-bold title h6 text-uppercase mb-4">Categories</h1>
-            
-        {% for category in site.categories %} 
-        <h4 class="font-weight-bold spanborder text-capitalize" id="{{ category[0] | downcase }}"><span>{{ category[0] }}</span></h4>
-            
-        {% assign pages_list = category[1] %}
-        {% for post in pages_list %}
-        {% if post.title != null %}
-          {% if group == null or group == post.group %}
-         
-            {% include main-loop-card.html %}
-          {% endif %}
-        {% endif %}
-        {% endfor %}
-        {% assign pages_list = nil %}
-        {% assign group = nil %}
-
-        {% endfor %}
-
+    <header class="py-5 mb-4 border-bottom">
+        <div class="text-center">
+            <h1 class="fw-bold">Categories</h1>
         </div>
-        
-            <div class="col-md-4">
-        {% include sidebar-featured.html %}    
-    </div>
-        
-    </div>
+    </header>
+
+    {% for category in site.categories %}
+    <section class="mb-5">
+        <h3 class="fw-bold pb-3 mb-4 border-bottom" id="{{ category[0] | downcase }}">{{ category[0] | capitalize }}</h3>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% assign pages_list = category[1] %}
+            {% for post in pages_list %}
+            {% if post.title != null %}
+            <div class="col">
+                <article class="card h-100">
+                    {% if post.image %}
+                    <a href="{{site.baseurl}}{{post.url}}">
+                        <img src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{site.baseurl}}/{{ post.image }}{% endif %}" class="card-img-top" alt="{{ post.title }}" style="aspect-ratio: 4/3; object-fit: cover;">
+                    </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <a href="{{site.baseurl}}/{{ category[0] | downcase | replace: ' ', '-' }}/" class="badge bg-primary text-decoration-none">{{ category[0] | capitalize }}</a>
+                            <small class="text-body-secondary">{{ post.date | date: '%B %-d, %Y' }}</small>
+                        </div>
+                        <h5 class="card-title fw-bold">
+                            <a href="{{site.baseurl}}{{post.url}}" class="text-decoration-none text-body">{{ post.title }}</a>
+                        </h5>
+                        <p class="card-text text-body-secondary">
+                            {{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}
+                        </p>
+                    </div>
+                </article>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% assign pages_list = nil %}
+        </div>
+    </section>
+    {% endfor %}
 </div>

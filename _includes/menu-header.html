@@ -1,20 +1,23 @@
-<!--  Replace menu links here -->
-
 <li class="nav-item">
-<a class="nav-link" href="{{site.baseurl}}/">Home</a>
+    <a class="nav-link" href="{{site.baseurl}}/">Home</a>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="{{site.baseurl}}/categories" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+        {% assign sorted_categories = site.categories | sort %}
+        {% for category in sorted_categories %}
+        <li>
+            <a class="dropdown-item" href="{{site.baseurl}}/{{ category[0] | downcase | replace: ' ', '-' }}/">{{ category[0] | capitalize }}</a>
+        </li>
+        {% endfor %}
+        <li><hr class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item" href="{{site.baseurl}}/categories">All Categories</a>
+        </li>
+    </ul>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="{{site.baseurl}}/categories">Categories</a>
+    <a class="nav-link" href="{{site.baseurl}}/about">About</a>
 </li>
-<li class="nav-item">
-<a class="nav-link" href="{{site.baseurl}}/about">About</a>
-</li>
-<!-- <li class="nav-item">
-<a target="_blank" class="nav-link" href="https://www.wowthemes.net/themes/mundana-wordpress/">WP</a>
-</li>
-<li class="nav-item">
-<a target="_blank" class="nav-link" href="https://www.wowthemes.net/themes/mundana-ghost/">Ghost</a>
-</li>
-<li class="nav-item">
-<a target="_blank" class="nav-link" href="https://www.wowthemes.net/donate/">Buy me a coffee <i class="fa fa-coffee text-danger"></i></a>
-</li> -->

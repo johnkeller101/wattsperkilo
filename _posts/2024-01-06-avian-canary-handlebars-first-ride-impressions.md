@@ -4,7 +4,9 @@ title: "Avian Canary Handlebars"
 author: john
 categories: [ handlebars, first ride ]
 image: assets/images/avian_canary_thumb.jpg
-tags: [first ride, sticky]
+outline: assets/images/outlines/avian-canary.svg
+summary: "Took a gamble on one of the lightest one-piece bars at 247g and ~$250. Flexy, but I don't think that's necessarily a bad thing."
+date: 2024-01-06
 ---
 
 As one of the lightest one-piece handlebars on the market, I decided to take a gamble with the Avian Canary handlebars. At ~$250, they are much less expensive than name brands but still have their own factory and brand which makes them appealing.

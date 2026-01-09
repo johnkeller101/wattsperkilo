@@ -3,12 +3,22 @@ layout: default
 ---
 
 <div class="container">
-<h3 class="font-weight-bold spanborder"><span>{{page.title}}</span></h3>
-<div class="page-content">
-{{ content }}
-<!-- Comments -->
-{% if page.comments == true %}
-{% include comments.html %}
-{% endif %}
-</div>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="fw-bold mb-4">{{ page.title }}</h1>
+
+            {% if page.image %}
+            <img class="img-fluid rounded mb-4" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+            {% endif %}
+
+            <div class="page-content">
+                {{ content }}
+            </div>
+
+            <!-- Comments -->
+            {% if page.comments == true %}
+            {% include comments.html %}
+            {% endif %}
+        </div>
+    </div>
 </div>

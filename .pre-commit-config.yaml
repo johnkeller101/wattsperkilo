@@ -1,0 +1,16 @@
+repos:
+  - repo: local
+    hooks:
+      - id: update-post-dates
+        name: Update post dates
+        entry: ./scripts/update-post-dates.sh
+        language: script
+        pass_filenames: false
+        files: ^_posts/.*\.md$
+
+      - id: generate-category-pages
+        name: Generate category pages
+        entry: ./scripts/generate-category-pages.sh
+        language: script
+        pass_filenames: false
+        files: ^_posts/.*\.md$

@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div class="container">
+    <header class="py-5 mb-4 border-bottom">
+        <div class="text-center">
+            <h1 class="fw-bold">{{ page.title }}</h1>
+            {% if page.description %}
+            <p class="lead text-body-secondary mb-0">{{ page.description }}</p>
+            {% endif %}
+        </div>
+    </header>
+
+    {% assign category_posts = site.categories[page.category] %}
+
+    {% if category_posts.size > 0 %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in category_posts %}
+        <div class="col">
+            {% include card.html show_footer=true %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center text-body-secondary">No posts in this category yet.</p>
+    {% endif %}
+</div>

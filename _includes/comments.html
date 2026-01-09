@@ -1,18 +1,15 @@
-<!--  Don't edit anything here. Set your disqus id in _config.yml -->
-
+<!-- Cusdis Comments - Set your cusdis app_id in _config.yml -->
+{% if site.cusdis.app_id %}
 <div id="comments" class="mt-5">
-    <div id="disqus_thread">
-    </div>
-    <script type="text/javascript">
-        var disqus_shortname = '{{site.disqus}}'; 
-        var disqus_developer = 0;
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>
-    Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-    </noscript>
+    <h5 class="fw-bold mb-3">Comments</h5>
+    <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="{{ site.cusdis.app_id }}"
+        data-page-id="{{ page.url }}"
+        data-page-url="{{ page.url | absolute_url }}"
+        data-page-title="{{ page.title }}"
+        data-theme="auto"
+    ></div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
+{% endif %}
