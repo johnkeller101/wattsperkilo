@@ -4,6 +4,7 @@ layout: page
 permalink: "/about"
 image: "assets/images/sbt-leading.jpg"
 comments: false
+description: "A retired racer turned equipment junkie in Boulder, CO. No sponsors, just real miles on lightweight parts pushed to their limits."
 ---
 
 WattsPerKilo is a place to share my latest experiences using lightweight bike parts, from the perspective of someone who pushes the equipment to its limits. I'm a retired racer turned Strava/equipment junkie, who spends his free time riding hard up mountains and smashing group rides. I have no sponsor ties, so I do my best to test everything out there but I am more value-oriented than publications who get (and often keep) endless review samples.

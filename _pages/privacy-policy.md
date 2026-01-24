@@ -1,6 +1,7 @@
 ---
 title: "Privacy Policy"
 permalink: "/privacy-policy"
+description: "How Watts Per Kilo handles your data. We use basic analytics and cookies—no personal info is sold or shared."
 ---
 
 "{{site.name}}" takes your privacy seriously. To better protect your privacy we provide this privacy policy notice explaining the way your personal information is collected and used.

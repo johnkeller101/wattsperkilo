@@ -1,21 +1,17 @@
 <script>
 {% assign counter = 0 %}
-var documents = [{% for page in site.pages %}{% if page.url contains '.xml' or page.url contains 'assets' %}{% else %}{
+var documents = [{% for page in site.pages %}{% if page.url contains '.xml' or page.url contains 'assets' %}{% else %}{% if page.description %}{
     "id": {{ counter }},
     "url": "{{ site.url }}{{site.baseurl}}{{ page.url }}",
     "title": "{{ page.title }}",
-    "body": "{{ page.content | markdownify | strip_html | strip_newlines | replace: '"', ' ' | truncate: 300 }}"{% assign counter = counter | plus: 1 %}
-    }, {% endif %}{% endfor %}{% for page in site.without-plugin %}{
-    "id": {{ counter }},
-    "url": "{{ site.url }}{{site.baseurl}}{{ page.url }}",
-    "title": "{{ page.title }}",
-    "body": "{{ page.content | markdownify | strip_html | strip_newlines | replace: '"', ' ' | truncate: 300 }}"{% assign counter = counter | plus: 1 %}
-    }, {% endfor %}{% for page in site.posts %}{
+    "body": "{{ page.description | replace: '"', ' ' }}"{% assign counter = counter | plus: 1 %}
+    }, {% endif %}{% endif %}{% endfor %}{% for page in site.posts %}{
     "id": {{ counter }},
     "url": "{{ site.url }}{{site.baseurl}}{{ page.url }}",
     "title": "{{ page.title }}",
     "body": "{{ page.summary | default: page.excerpt | strip_html | strip_newlines | replace: '"', ' ' | truncate: 300 }}",
-    "categories": "{{ page.categories | join: ' ' }}"{% assign counter = counter | plus: 1 %}
+    "categories": "{{ page.categories | join: ' ' }}",
+    "date": "{{ page.date | date: '%B %-d, %Y' }}"{% assign counter = counter | plus: 1 %}
     }{% if forloop.last %}{% else %}, {% endif %}{% endfor %}];
 
 var idx = lunr(function () {
@@ -47,11 +43,13 @@ function lunr_search(term) {
             var url = documents[ref].url;
             var title = documents[ref].title;
             var body = documents[ref].body.substring(0, 160) + '...';
+            var date = documents[ref].date || '';
 
             var li = document.createElement('li');
             li.className = 'list-group-item';
             li.innerHTML = '<a href="' + url + '" class="text-decoration-none">' +
                 '<div class="fw-semibold">' + title + '</div>' +
+                (date ? '<small class="text-body-secondary me-2">' + date + '</small>' : '') +
                 '<small class="text-body-secondary">' + body + '</small>' +
                 '</a>';
             resultsList.appendChild(li);

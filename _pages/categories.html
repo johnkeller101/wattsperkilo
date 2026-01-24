@@ -2,6 +2,7 @@
 title: "Categories"
 layout: default
 permalink: "/categories"
+description: "Browse reviews and articles by category: rotors, chainrings, cranks, handlebars, wheels, accessories, training, and more."
 ---
 
 <div class="container">
@@ -20,25 +21,7 @@ permalink: "/categories"
             {% for post in pages_list %}
             {% if post.title != null %}
             <div class="col">
-                <article class="card h-100">
-                    {% if post.image %}
-                    <a href="{{site.baseurl}}{{post.url}}">
-                        <img src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{site.baseurl}}/{{ post.image }}{% endif %}" class="card-img-top" alt="{{ post.title }}" style="aspect-ratio: 4/3; object-fit: cover;">
-                    </a>
-                    {% endif %}
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <a href="{{site.baseurl}}/{{ category[0] | downcase | replace: ' ', '-' }}/" class="badge bg-primary text-decoration-none">{{ category[0] | capitalize }}</a>
-                            <small class="text-body-secondary">{{ post.date | date: '%B %-d, %Y' }}</small>
-                        </div>
-                        <h5 class="card-title fw-bold">
-                            <a href="{{site.baseurl}}{{post.url}}" class="text-decoration-none text-body">{{ post.title }}</a>
-                        </h5>
-                        <p class="card-text text-body-secondary">
-                            {{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}
-                        </p>
-                    </div>
-                </article>
+                {% include card.html %}
             </div>
             {% endif %}
             {% endfor %}
