@@ -7,7 +7,7 @@ image: assets/images/xpedo_thrust_sl.jpg
 outline: assets/images/outlines/xpedo-thurst-sl.svg
 summary: "The lightest Look-Keo pedals by a good margin at 168g. After multiple warranty claims and bearing replacements, here's where I landed."
 date: 2023-11-15
-updated: 2026-01-09
+last_modified_at: 2026-01-24
 ---
 The Xpedo Thrust SL is the lightest look-keo style pedals on the market by a good margin. I've had experience with Xpedo before, with their light mtb pedals to mixed success, so I decided to take the plunge and order a pair from Amazon International for $227.44 (which is far less than their website).
 

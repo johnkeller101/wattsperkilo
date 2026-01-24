@@ -26,8 +26,8 @@ layout: default
                     <div>
                         <span class="fw-semibold">John Keller</span>
                         <div class="text-body-secondary small">
-                            {% if page.updated %}
-                            Updated {{ page.updated | date: '%B %-d, %Y' }} · First published {{ page.date | date: '%B %-d, %Y' }}
+                            {% if page.last_modified_at %}
+                            Updated {{ page.last_modified_at | date: '%B %-d, %Y' }} · First published {{ page.date | date: '%B %-d, %Y' }}
                             {% else %}
                             {{ page.date | date: '%B %-d, %Y' }}
                             {% endif %}

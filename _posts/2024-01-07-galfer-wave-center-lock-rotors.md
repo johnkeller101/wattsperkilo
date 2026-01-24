@@ -7,7 +7,7 @@ image: assets/images/galfer_wave_thumb.jpg
 outline: assets/images/outlines/galfer.svg
 summary: "At ~$70 you get Carbon-Ti weight without the $240 price tag. After 20k miles across 6 pairs, here's the full picture—including the bad news about US availability."
 date: 2024-01-07
-updated: 2026-01-09
+last_modified_at: 2026-01-24
 ---
 
 After putting roughly 20,000 miles on these across 6 pairs of rotors, I can give a pretty complete picture of what to expect. The riding has been mostly climbing and pushing descents on dirt roads and pavement around Boulder—not gentle conditions by any means.
