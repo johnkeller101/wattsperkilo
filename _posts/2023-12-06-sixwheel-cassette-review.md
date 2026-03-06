@@ -2,11 +2,12 @@
 layout: post
 title:  "Sixwheel 12 Speed Cassette Review"
 author: john
-categories: [ reviews ]
+categories: [ cassettes, reviews ]
 image: assets/images/sixwheel_thumbnail.jpg
 outline: assets/images/outlines/sixwheel-cassette.svg
 summary: "At $390, this high-end cassette promised Shimano-quality shifting with weight savings and custom colors. Here's how it held up after 3,000 miles."
 date: 2023-12-06
+last_modified_at: 2026-03-06
 ---
 
 The search for saving grames is not always about pure weight savings, sometimes looks start to play a big role. For reference, the Shimano 11-34t cassette weighs in at 253g. When it comes purely to saving weight on cassettes, there are a few options: 
@@ -47,4 +48,6 @@ Well, three thousand miles later there has been no improvement and the 11t is to
 
 ### Verdict
 
-Do not recommend, stick with Shimano or try running a SRAM cassette instead
+Do not recommend, stick with Shimano or try running a SRAM cassette instead.
+
+**Update:** I've since tried the [ZTTO SLR Gen3](/ztto-slr-gen3-cassette-review/), which is a much better cassette than the old ZTTO monoblock I mentioned above. Shifting is good and the weight is absurd. But it has its own problems. Full review [here](/ztto-slr-gen3-cassette-review/).
