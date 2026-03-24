@@ -7,6 +7,7 @@ image: assets/images/crw_works_weight.jpg
 outline: assets/images/outlines/crw-cs5060.svg
 summary: "Some of the lightest affordable aero wheels on the market. Hooked rims, minimal logos, and replaceable bearings - first ride impressions."
 date: 2024-01-06
+last_modified_at: 2026-03-24
 ---
 
 The Craft Racing Works wheels are some of the lightest-but-still-affordable aero wheels on the market. For me, they check all the boxes:
@@ -22,27 +23,19 @@ I was able to order the CS5060 wheelset with the front wheel from the CS5055. Th
 
 I've done a few rides on them and have had no issue. The "whoosh" noise is minimal for wheels this deep, and they are plenty stiff given their weight. Excited to put some miles on them over the next few months and see how it all turns out! 
 
-Here's the specs:
+### Specs
 
-- Front wheel:
-    - Rim Depth: 50mm
-    - Internal Rim Width: 21mm
-    - External Rim Width: 29mm
-    - No. of Spokes: 16
-    - Min. Tire Size: 24mm
-    - Max. Tire Size: 40mm
-    - Max. Tire Pressure: 120psi @ 25mm
-    - Thru Axle Size: 100 x 12mm
-
-- Rear wheel:
-    - Rim Depth: 60mm
-    - Internal Rim Width: 21mm
-    - External Rim Width: 29mm
-    - No. of Spokes: 20
-    - Min. Tire Size: 24mm
-    - Max. Tire Size: 40mm
-    - Max. Tire Pressure: 120psi @ 25mm
-    - Thru Axle Size: 142 x 12mm
-    - Freehub: 36T Star Ratchet. Shimano 11s, SRAM XDR or Camp. compatible options.
+|   | Front | Rear |
+|---|---|---|
+|   | <img class="outline-tint-5" src="../assets/images/crwcs50frontprofile.png" alt="CS50 Front"> | <img class="outline-tint-5" src="../assets/images/crwcs60rearprofile.png" alt="CS60 Rear"> |
+| Rim Depth | 50mm | 60mm |
+| Internal Rim Width | 21mm | 21mm |
+| External Rim Width | 29mm | 29mm |
+| Spokes | 16 | 20 |
+| Min. Tire Size | 24mm | 24mm |
+| Max. Tire Size | 40mm | 40mm |
+| Max. Tire Pressure | 120psi @ 25mm | 120psi @ 25mm |
+| Thru Axle | 100 x 12mm | 142 x 12mm |
+| Freehub | — | 36T Star Ratchet |
 
 ![CRW Works Wheelset Weight](../assets/images/crw_works_weight.jpg)

@@ -534,6 +534,38 @@ ul.post-list li {
 }
 
 /* ========================================
+   Buy / External Link Buttons
+   ======================================== */
+
+.article-content .btn {
+    display: inline-block;
+    padding: .5em 1.2em;
+    border: 1px solid var(--separator-color);
+    border-radius: .5em;
+    font-size: .95em;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: opacity .2s ease;
+    margin: .25em .35em
+}
+
+.article-content .btn::before {
+    content: '';
+    display: inline-block;
+    width: .95em;
+    height: .95em;
+    margin-right: .6em;
+    vertical-align: -.1em;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='9' cy='21' r='1'/%3e%3ccircle cx='20' cy='21' r='1'/%3e%3cpath d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6'/%3e%3c/svg%3e") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='9' cy='21' r='1'/%3e%3ccircle cx='20' cy='21' r='1'/%3e%3cpath d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6'/%3e%3c/svg%3e") no-repeat center / contain
+}
+
+.article-content .btn:hover {
+    opacity: .7
+}
+
+/* ========================================
    Author Box
    ======================================== */
 
