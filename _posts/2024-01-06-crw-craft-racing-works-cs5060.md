@@ -39,3 +39,9 @@ I've done a few rides on them and have had no issue. The "whoosh" noise is minim
 | Freehub | — | 36T Star Ratchet |
 
 ![CRW Works Wheelset Weight](../assets/images/crw_works_weight.jpg)
+
+<span style="margin:auto; display:table;">
+<a target="_blank" href="https://www.pandapodium.cc/product/crw-works-2026-cs5060-road-disc-brake-wheelset/" class="btn btn-outline-success btn-lg btn-round ml-1">View on Panda Podium</a>
+</span>
+
+Disclosure: I purchased this with my own money. I have had no communication with the manufacturer and all thoughts/opinions are my own.

@@ -7,6 +7,7 @@ image: assets/images/elilee_thumb.jpg
 outline: assets/images/outlines/elilee-x-novanta.svg
 summary: "For ~40g more than THM, you get a metal spindle interface that won't loosen, plus preload adjustment and 4/5-bolt chainring options."
 date: 2024-01-07
+last_modified_at: 2026-03-24
 ---
 
 After having a friend try out these cranks for a few months, I finally decided to pull the trigger and test them out. They sell two different versions, one with an aluminum 24mm spindle, and one with a 28mm spindle (which can be adapted to DUB or 30mm using included spacers). The 24mm spindle is heavier, and made of aluminum, which has been known to crack at times. The overall weight might be the same, as the 30mm spindle requires a heavier bottom bracket. 
@@ -26,6 +27,8 @@ There are some questionable finishings on the inside of the left arm, but they s
 For the power meter, I went with a Sigeyi AXO power meter. The cranks came without the correct tool to install the spider onto the cranks, but I was able to have a shop torque it down. The correct tool you need is a BBT-22.
 
 Looking forward to putting some miles on these and reporting back! As always, feel free to share your thoughts below.
+
+I'm running these with [CYBREI carbon chainrings](/cybrei-carbon-chainrings-and-bolts/) in 54/38, which is a ratio you can't get from Shimano. The chainrings have their own issues (spoiler: the carbon layer fell off), but the cranks themselves have been solid.
 
 <span style="margin:auto; display:table;">
 <a target="_blank" href="https://www.aliexpress.us/item/3256804975926457.html" class="btn btn-outline-success btn-lg btn-round ml-1">View on AliExpress</a>

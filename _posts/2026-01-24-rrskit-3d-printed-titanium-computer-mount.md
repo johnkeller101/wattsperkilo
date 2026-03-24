@@ -6,6 +6,7 @@ categories: [ accessories, reviews ]
 outline: assets/images/outlines/rrskit-mount.svg
 summary: "A $30 3D-printed titanium computer mount that's a clone of the Scott Addict RC mount. Rock solid with a Wahoo and Cycliq mounted, but needs some tweaking out of the box."
 date: 2026-01-24
+last_modified_at: 2026-03-24
 ---
 
 I have four of these mounts. They're a clone of the [Syncros iC SL INSPIR3D](https://www.syncros.com/us/en/product/syncros-ic-sl-inspir3d-front-comp-mount) computer mount that Scott made for the Addict RC, but with an added GoPro adapter underneath. At $30-40 on AliExpress when on sale, they're a fraction of the cost of the Syncros original.
@@ -49,7 +50,7 @@ The default angle is tilted down at a negative angle which is not usable in my o
 
 ### Color Options
 
-![RRSKIT color options](../assets/images/rrskit-colors.jpg)
+![RRSKIT color options](../assets/images/rrskit-colors.png)
 
 Some sellers offer anodized versions in bright colors but they come at a big price premium. I've stuck with the standard titanium silver color. It looks fine and keeps the cost down. But the flashy colors do look sweet!
 
