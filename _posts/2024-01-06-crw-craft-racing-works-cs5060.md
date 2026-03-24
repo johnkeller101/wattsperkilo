@@ -14,10 +14,20 @@ The Craft Racing Works wheels are some of the lightest-but-still-affordable aero
 - [x] Hooked rims
 - [x] Low weight
 - [x] Easy to replace bearings
-- [x] Replacement spokes are available if needed 
+- [x] Replacement spokes are available if needed
 - [x] Minimal logos
 
-![CRW Works Whellset on Tarmac SL8](../assets/images/sl8_header.jpg)
+### Overview
+
+|   | CRW CS5060 | Roval Rapide CLX II | ENVE SES 5.6 | Zipp 454 NSW |
+|---|---|---|---|---|
+| Weight | ~1,290g | ~1,360g | ~1,370g | ~1,355g |
+| Price (USD) | ~$1,400 | $3,100 | $3,400 | $3,200 |
+| Depth (F/R) | 50/60mm | 51mm | 53/64mm | 53/58mm |
+| Rim Type | Hooked | Hookless | Hookless | Hookless |
+| Spokes | Carbon | Carbon | Carbon | Carbon |
+
+![CRW Works wheelset on Tarmac SL8](../assets/images/sl8_header.jpg)
 
 I was able to order the CS5060 wheelset with the front wheel from the CS5055. The main difference is that the front wheel from the CS5060 is much wider, and has a minimum tire width of 29mm. The wider rims are more stable in crosswinds, but are less aero.
 

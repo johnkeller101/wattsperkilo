@@ -10,9 +10,19 @@ date: 2024-01-07
 last_modified_at: 2026-03-24
 ---
 
-After putting roughly 20,000 miles on these across 6 pairs of rotors, I can give a pretty complete picture of what to expect. The riding has been mostly climbing and pushing descents on dirt roads and pavement around Boulder—not gentle conditions by any means.
+After putting roughly 20,000 miles on these across 6 pairs of rotors, I can give a pretty complete picture of what to expect. The riding has been mostly climbing and pushing descents on dirt roads and pavement around Boulder, not gentle conditions by any means.
 
-Not only do they look fantastic, but they are the same weight as the super expensive Carbon-Ti rotors (and even lighter in the center lock variety). At ~$70 compared to $240 for Carbon-Ti, the value proposition is hard to beat.
+### Overview
+
+|   | Galfer Wave CL | Carbon-Ti X-Rotor | Shimano RT-MT900 | SRAM Paceline |
+|---|---|---|---|---|
+| Weight (140mm) | 75g | 78g | 96g | 100g |
+| Weight (160mm) | 96g | 100g | 108g | 112g |
+| Price (USD, 160mm) | ~$70 | ~$240 | ~$55 | ~$50 |
+| Mount | Center Lock | Center Lock | Center Lock | Center Lock |
+| Material | Stainless steel | Stainless steel | Stainless steel + aluminum carrier | Stainless steel |
+
+Same weight as the Carbon-Ti rotors, sometimes lighter in the center lock variety. At ~$70 compared to $240 for Carbon-Ti, the price difference is hard to ignore.
 
 ### The Good
 
