@@ -1,0 +1,32 @@
+dimensions:
+  aerodynamics: "Aerodynamics"
+  weight: "Weight"
+  stiffness: "Stiffness"
+  durability: "Durability"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      aerodynamics: 25
+      weight: 20
+      stiffness: 20
+      durability: 20
+      value: 15
+  racing:
+    label: "Racing"
+    weights:
+      aerodynamics: 30
+      weight: 30
+      stiffness: 20
+      durability: 10
+      value: 10
+  climbing:
+    label: "Climbing"
+    weights:
+      aerodynamics: 15
+      weight: 40
+      stiffness: 20
+      durability: 15
+      value: 10

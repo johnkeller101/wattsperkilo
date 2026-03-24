@@ -1,0 +1,34 @@
+{% comment %}
+  Buy links component
+  - If page.buy_links is set, render only those links
+  - Otherwise, fall back to Amazon & AliExpress search links
+  Usage: {% include buy-links.html size="sm" %}
+{% endcomment %}
+{% assign btn_size = include.size | default: "" %}
+{% assign btn_class = "btn" %}
+{% if btn_size == "sm" %}{% assign btn_class = "btn btn-sm" %}{% endif %}
+{% assign search_query = page.title | url_encode %}
+
+{% if page.buy_links and page.buy_links.size > 0 %}
+    {% for link in page.buy_links %}
+        {% assign store = site.data.stores[link.store] %}
+        {% if store %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="{{ btn_class }} {{ store.btn }}">
+            <i class="bi {{ store.icon }} me-1"></i> {{ link.label | default: store.name }}
+        </a>
+        {% else %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="{{ btn_class }} btn-outline-secondary">
+            <i class="bi bi-link-45deg me-1"></i> {{ link.label | default: link.store }}
+        </a>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% assign amazon = site.data.stores["amazon"] %}
+    {% assign ali = site.data.stores["aliexpress"] %}
+    <a href="{{ amazon.search_url }}{{ search_query }}" target="_blank" rel="noopener noreferrer" class="{{ btn_class }} {{ amazon.btn }}">
+        <i class="bi {{ amazon.icon }} me-1"></i> {{ amazon.name }}
+    </a>
+    <a href="{{ ali.search_url }}{{ search_query }}" target="_blank" rel="noopener noreferrer" class="{{ btn_class }} {{ ali.btn }}">
+        <i class="bi {{ ali.icon }} me-1"></i> {{ ali.name }}
+    </a>
+{% endif %}

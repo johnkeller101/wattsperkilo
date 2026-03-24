@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: ranking
 title: Rotors
 category: rotors
 permalink: /rotors/

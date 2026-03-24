@@ -1,0 +1,32 @@
+{% comment %}
+  Build-time JSON blob of all products for client-side comparison tool
+  Usage: {% include products-json.html %}
+  Outputs: window.wpkProducts = [...]
+{% endcomment %}
+<script>
+window.wpkProducts = [
+{% for product in site.products %}{% if product.overall_score %}
+{
+    "title": {{ product.title | jsonify }},
+    "slug": {{ product.slug | jsonify }},
+    "url": "{{ site.baseurl }}{{ product.url }}",
+    "brand": {{ product.brand | jsonify }},
+    "category": {{ product.category | jsonify }},
+    "status": {{ product.status | jsonify }},
+    "overall_score": {{ product.overall_score }},
+    "scores": {{ product.scores | jsonify }},
+    "specs": {{ product.specs | jsonify }},
+    "pros": {{ product.pros | jsonify }},
+    "cons": {{ product.cons | jsonify }},
+    "summary": {{ product.summary | jsonify }},
+    "outline": {% if product.outline and product.outline != "" %}"{{ site.baseurl }}/{{ product.outline }}"{% else %}null{% endif %},
+    "image": {% if product.image and product.image != "" %}"{{ site.baseurl }}/{{ product.image }}"{% else %}null{% endif %},
+    "product_type": {{ product.product_type | default: nil | jsonify }},
+    "component_position": {{ product.component_position | default: nil | jsonify }},
+    "variants": {% if product.variants %}{{ product.variants | jsonify }}{% else %}null{% endif %}
+}{% unless forloop.last %},{% endunless %}
+{% endif %}{% endfor %}
+];
+window.wpkCategories = {{ site.data.categories | jsonify }};
+window.wpkScoring = {{ site.data.scoring | jsonify }};
+</script>

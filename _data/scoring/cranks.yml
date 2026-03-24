@@ -1,0 +1,24 @@
+dimensions:
+  stiffness: "Stiffness"
+  weight: "Weight"
+  finish: "Finish Quality"
+  compatibility: "Compatibility"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      stiffness: 30
+      weight: 25
+      finish: 15
+      compatibility: 15
+      value: 15
+  racing:
+    label: "Racing"
+    weights:
+      stiffness: 35
+      weight: 30
+      finish: 10
+      compatibility: 10
+      value: 15

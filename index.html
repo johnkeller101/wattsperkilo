@@ -3,100 +3,137 @@ title: "Home"
 layout: default
 pagination:
     enabled: true
-description: "The latest news, product reviews, builds, and ideas from the weight weenie cycling mindset"
+description: "Data-driven cycling component reviews and rankings from the weight weenie mindset"
 image: 'assets/images/logo.jpg'
 ---
 
-<div class="container">
-
 {% if page.url == "/" %}
-{% if site.posts.size > 0 %}
 
-<!-- Page Header -->
-<header class="py-5 mb-4 border-bottom">
-    <div class="text-center">
-        <h1 class="fw-bold">{{ site.name }}</h1>
-        <p class="lead text-body-secondary mb-0">{{ site.description }}</p>
-    </div>
-</header>
-
-<!-- Featured Post -->
-{% assign post = site.posts[0] %}
-<div class="row mb-5">
-    <div class="col-12">
-        {% include card-featured.html %}
-    </div>
-</div>
-
-<!-- Recent Posts Grid -->
-<div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
-    {% for i in (1..2) %}
-    {% assign post = site.posts[i] %}
-    {% if post %}
-    <div class="col">
-        {% include card-wide.html %}
-    </div>
+{% comment %} Find top-scored product for hero {% endcomment %}
+{% assign all_scored = site.products | sort: "overall_score" | reverse %}
+{% assign hero_product = nil %}
+{% for p in all_scored %}
+    {% if p.overall_score and p.overall_score > 0 and hero_product == nil %}
+        {% assign hero_product = p %}
     {% endif %}
-    {% endfor %}
-</div>
+{% endfor %}
 
-{% endif %}
-{% endif %}
+<!-- ============ HERO ============ -->
+<section class="bg-body-tertiary py-5">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <!-- Left: SVG + tagline -->
+            <div class="col-md-6 text-center text-md-start">
+                {% if hero_product and hero_product.outline and hero_product.outline != "" %}
+                {% assign color_index = hero_product.title | size | modulo: 6 | plus: 1 %}
+                <div class="outline-container outline-bg-{{ color_index }} rounded-3 p-4 mb-3 mx-auto mx-md-0" style="max-width: 400px; min-height: 200px;">
+                    <img src="{{ site.baseurl }}/{{ hero_product.outline }}" alt="{{ hero_product.title }}" class="img-fluid" style="max-height: 250px;">
+                </div>
+                {% endif %}
+                <h1 class="fw-bold mb-2">{{ site.name }}</h1>
+                <p class="lead text-body-secondary mb-0">Independent tests. No sponsors. No BS.</p>
+            </div>
 
-<!-- All Posts Section -->
-{% if paginator.page == 1 %}
-    {% assign featured_urls = "" | split: "" %}
-    {% assign featured_urls = featured_urls | push: site.posts[0].url %}
-    {% assign featured_urls = featured_urls | push: site.posts[1].url %}
-    {% assign featured_urls = featured_urls | push: site.posts[2].url %}
-
-    {% assign remaining_posts = "" | split: "" %}
-    {% for post in paginator.posts %}
-        {% unless featured_urls contains post.url %}
-            {% assign remaining_posts = remaining_posts | push: post %}
-        {% endunless %}
-    {% endfor %}
-{% else %}
-    {% assign remaining_posts = paginator.posts %}
-{% endif %}
-
-{% if remaining_posts.size > 0 %}
-<h3 class="pb-3 mb-4 border-bottom">All Posts</h3>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for post in remaining_posts %}
-    <div class="col">
-        {% include card.html show_footer=true %}
+            <!-- Right: Quick answers -->
+            <div class="col-md-6">
+                <h5 class="text-body-secondary fw-semibold mb-3" style="letter-spacing: 0.03em;">QUICK ANSWERS</h5>
+                {% comment %} Build quick answer cards per category {% endcomment %}
+                {% assign qa_count = 0 %}
+                {% for cat in site.data.categories %}
+                    {% if qa_count >= 3 %}{% break %}{% endif %}
+                    {% assign cat_key = cat[0] %}
+                    {% assign cat_data = cat[1] %}
+                    {% assign cat_products = site.products | where: "category", cat_key | sort: "overall_score" | reverse %}
+                    {% assign top_in_cat = nil %}
+                    {% for p in cat_products %}
+                        {% if p.overall_score and p.overall_score > 0 and top_in_cat == nil %}
+                            {% assign top_in_cat = p %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if top_in_cat %}
+                    {% assign qa_count = qa_count | plus: 1 %}
+                    <a href="{{ site.baseurl }}{{ top_in_cat.url }}" class="card card-stat mb-2 text-decoration-none">
+                        <div class="card-body py-2 px-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <small class="text-body-secondary">Best {{ cat_data.name | downcase }}</small>
+                                    <div class="fw-bold">{{ top_in_cat.title }}</div>
+                                    <small class="text-body-secondary">{% if top_in_cat.specs.weight_measured %}{{ top_in_cat.specs.weight_measured }}g{% endif %}{% if top_in_cat.specs.price %} · ${{ top_in_cat.specs.price }}{% endif %}</small>
+                                </div>
+                                {% if top_in_cat.overall_score and top_in_cat.overall_score > 0 %}
+                                {% include score-ring.html score=top_in_cat.overall_score size="sm" %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+                <a href="{{ site.baseurl }}/cassettes/" class="btn btn-sm btn-outline-primary mt-2">See all rankings &rarr;</a>
+            </div>
+        </div>
     </div>
-    {% endfor %}
-</div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+{% assign has_products = false %}
+{% for cat in site.data.categories %}
+    {% assign cat_key = cat[0] %}
+    {% assign cat_products = site.products | where: "category", cat_key %}
+    {% if cat_products.size > 0 %}{% assign has_products = true %}{% endif %}
+{% endfor %}
+
+{% if has_products %}
+<section class="py-4">
+    <div class="container">
+        <h4 class="fw-bold mb-3">Browse by Category</h4>
+        {% include category-grid.html %}
+    </div>
+</section>
 {% endif %}
 
-<!-- Pagination -->
-{% if paginator.total_pages > 1 %}
-<nav aria-label="Page navigation" class="mt-5">
-    <ul class="pagination justify-content-center">
-        {% if paginator.previous_page %}
-        <li class="page-item">
-            <a class="page-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Newer</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <span class="page-link">&laquo; Newer</span>
-        </li>
-        {% endif %}
+<!-- ============ TOP RATED ============ -->
+{% assign top_products = "" | split: "" %}
+{% for p in all_scored %}
+    {% if p.overall_score and p.overall_score > 0 and top_products.size < 6 %}
+        {% assign top_products = top_products | push: p %}
+    {% endif %}
+{% endfor %}
 
-        {% if paginator.next_page %}
-        <li class="page-item">
-            <a class="page-link" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older &raquo;</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <span class="page-link">Older &raquo;</span>
-        </li>
-        {% endif %}
-    </ul>
-</nav>
+{% if top_products.size > 0 %}
+<section class="py-4">
+    <div class="container">
+        <h4 class="fw-bold mb-3">Top Rated</h4>
+        {% for product in top_products limit: 6 %}
+        <a href="{{ site.baseurl }}{{ product.url }}" class="card card-stat mb-2 text-decoration-none fade-up">
+            <div class="card-body py-2 px-3">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="fw-bold text-body-secondary" style="font-size: 1.1rem; min-width: 1.5rem;">#{{ forloop.index }}</span>
+                    <div class="outline-container rounded flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 64px; height: 48px;">
+                        {% if product.outline and product.outline != "" %}
+                        <img src="{{ site.baseurl }}/{{ product.outline }}" alt="{{ product.title }}" style="max-height: 40px; max-width: 56px; object-fit: contain;">
+                        {% elsif product.image and product.image != "" %}
+                        <img src="{% if product.image contains '://' %}{{ product.image }}{% else %}{{ site.baseurl }}/{{ product.image }}{% endif %}" alt="{{ product.title }}" style="max-height: 40px; max-width: 56px; object-fit: cover; border-radius: 4px;">
+                        {% else %}
+                        {% include outline-placeholder.html %}
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow-1 min-width-0">
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <h6 class="fw-bold mb-0">{{ product.title }}</h6>
+                        </div>
+                        <small class="text-body-secondary">{{ product.category | capitalize }}{% if product.specs.weight_measured %} · {{ product.specs.weight_measured }}g{% endif %}{% if product.specs.price %} · ${{ product.specs.price }}{% endif %}</small>
+                    </div>
+                    {% if product.overall_score and product.overall_score > 0 %}
+                    <div class="flex-shrink-0">
+                        {% include score-ring.html score=product.overall_score size="sm" %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
 {% endif %}
 
-</div>
+{% endif %}

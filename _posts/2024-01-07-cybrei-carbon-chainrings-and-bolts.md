@@ -7,6 +7,7 @@ image: assets/images/cybrei_chainring_thumb.jpg
 outline: assets/images/outlines/cybrei-chainring.svg
 summary: "At ~$200, I hoped these would be a cheaper alternative to Carbon-Ti rings. After 3,000 miles, the carbon layer delaminated and I've moved on."
 date: 2024-01-07
+last_modified_at: 2026-03-24
 ---
 
 I ordered these chainrings in hopes of finding a less expensive alternative to the Carbon-Ti chainrings (which have treated me pretty well). At ~$200 compared to $270 for just the Carbon-Ti outer ring, the savings seemed worth it.
@@ -23,7 +24,7 @@ This is truly the AliExpress version of carbon chainrings. At least they look go
 
 <img src="../assets/images/cybrei_chainring_shimano_r9200.jpg" alt="CYBREI with Shimano R9200" style="max-width: 50%;">
 
-Despite what the listing says, they DO NOT work with Shimano 12 speed cranks. There is not enough clearance, and the seller confirmed I could not get it to fit. I was planning to use them with the [ELILEE X-Novanta Crankarms](/eliilee-x-novanta-crankarms/) anyway, so it wasn't a major issue for me.
+Despite what the listing says, they DO NOT work with Shimano 12 speed cranks. There is not enough clearance, and the seller confirmed I could not get it to fit. I was planning to use them with the [ELILEE X-Novanta Crankarms](/products/cranks/elilee-x-novanta/) anyway, so it wasn't a major issue for me.
 
 ### 3,000 Miles Later
 

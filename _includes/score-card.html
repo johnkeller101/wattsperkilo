@@ -1,0 +1,88 @@
+{% comment %}
+  Score card component — shows score ring + dimension bars with averages
+  Expects: page.scores, page.overall_score, page.category
+{% endcomment %}
+{% assign scoring = site.data.scoring[page.category] %}
+{% assign overall = page.overall_score | times: 1.0 %}
+{% if overall > 0 %}
+
+{% comment %} Compute category averages for each dimension {% endcomment %}
+{% assign cat_products = site.products | where: "category", page.category %}
+{% assign scored_count = 0 %}
+{% for cp in cat_products %}
+    {% if cp.overall_score and cp.overall_score > 0 %}
+        {% assign scored_count = scored_count | plus: 1 %}
+    {% endif %}
+{% endfor %}
+
+<div class="score-card card">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-3 gap-3">
+            {% include score-ring.html score=overall size="md" %}
+            <div>
+                <span class="fw-semibold">Overall Score</span>
+                {% if scored_count > 1 %}
+                <small class="d-block text-body-secondary">{{ scored_count }} products scored in category</small>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if scoring and page.scores %}
+        {% for dim in scoring.dimensions %}
+            {% assign dim_key = dim[0] %}
+            {% assign dim_label = dim[1] %}
+            {% assign dim_score = page.scores[dim_key] %}
+            {% if dim_score and dim_score > 0 %}
+
+            {% comment %} Compute average for this dimension {% endcomment %}
+            {% assign dim_sum = 0 %}
+            {% assign dim_count = 0 %}
+            {% for cp in cat_products %}
+                {% if cp.scores[dim_key] and cp.scores[dim_key] > 0 %}
+                    {% assign dim_sum = dim_sum | plus: cp.scores[dim_key] %}
+                    {% assign dim_count = dim_count | plus: 1 %}
+                {% endif %}
+            {% endfor %}
+            {% if dim_count > 1 %}
+                {% assign dim_avg = dim_sum | divided_by: dim_count | round: 1 %}
+            {% else %}
+                {% assign dim_avg = 0 %}
+            {% endif %}
+
+            {% include score-bar.html label=dim_label score=dim_score avg=dim_avg %}
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if scoring.profiles %}
+        <div class="mt-3 pt-3 border-top">
+            <small class="text-body-secondary d-block mb-2">Score by use case:</small>
+            <div class="d-flex flex-wrap gap-2">
+                {% for profile in scoring.profiles %}
+                {% assign profile_key = profile[0] %}
+                {% assign profile_data = profile[1] %}
+                {% if profile_key != "overall" %}
+                {% assign weighted_sum = 0 %}
+                {% assign weight_total = 0 %}
+                {% for w in profile_data.weights %}
+                    {% assign w_key = w[0] %}
+                    {% assign w_val = w[1] %}
+                    {% assign dim_score = page.scores[w_key] | times: 1.0 %}
+                    {% assign weighted = dim_score | times: w_val %}
+                    {% assign weighted_sum = weighted_sum | plus: weighted %}
+                    {% assign weight_total = weight_total | plus: w_val %}
+                {% endfor %}
+                {% if weight_total > 0 %}
+                {% assign profile_score = weighted_sum | divided_by: weight_total | round: 1 %}
+                {% endif %}
+                {% if profile_score and profile_score > 0 %}
+                <span class="badge bg-light text-body border">{{ profile_data.label }}: {{ profile_score }}</span>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}

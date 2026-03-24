@@ -1,0 +1,28 @@
+{% comment %}
+  Score bar component (enhanced)
+  Usage: {% include score-bar.html label="Shifting" score=7.0 avg=6.5 %}
+{% endcomment %}
+{% assign score_val = include.score | times: 1.0 %}
+{% assign bar_width = score_val | times: 10 %}
+{% if score_val >= 8.0 %}
+  {% assign bar_color = "var(--wpk-score-excellent)" %}
+{% elsif score_val >= 7.0 %}
+  {% assign bar_color = "var(--wpk-score-good)" %}
+{% elsif score_val >= 5.0 %}
+  {% assign bar_color = "var(--wpk-score-average)" %}
+{% elsif score_val >= 3.0 %}
+  {% assign bar_color = "var(--wpk-score-below)" %}
+{% else %}
+  {% assign bar_color = "var(--wpk-score-poor)" %}
+{% endif %}
+{% assign avg_val = include.avg | times: 1.0 %}
+<div class="d-flex align-items-center mb-2">
+    <span class="score-label text-body-secondary me-2">{{ include.label }}</span>
+    <div class="score-bar-track flex-grow-1" {% if avg_val > 0 %}data-bs-toggle="tooltip" data-bs-placement="top" title="{{ score_val }}/10 — Avg: {{ avg_val }}"{% endif %}>
+        {% if avg_val > 0 %}
+        <span class="score-bar-avg" style="left: {{ avg_val | times: 10 }}%"></span>
+        {% endif %}
+        <div class="score-bar-fill" data-width="{{ bar_width }}" style="background-color: {{ bar_color }}; width: 0%;"></div>
+    </div>
+    <span class="score-value fw-semibold ms-2">{{ score_val }}</span>
+</div>

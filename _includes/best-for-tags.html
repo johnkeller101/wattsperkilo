@@ -1,0 +1,12 @@
+{% comment %}
+  Best-for tags component — renders best_for array as pill badges
+  Usage: {% include best-for-tags.html tags=page.best_for %}
+{% endcomment %}
+{% assign tags = include.tags %}
+{% if tags and tags.size > 0 %}
+<div class="d-flex flex-wrap gap-1">
+    {% for tag in tags %}
+    <span class="best-for-tag">{{ tag }}</span>
+    {% endfor %}
+</div>
+{% endif %}

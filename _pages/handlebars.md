@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: ranking
 title: Handlebars
 category: handlebars
 permalink: /handlebars/

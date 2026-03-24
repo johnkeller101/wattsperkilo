@@ -1,0 +1,14 @@
+{% comment %}
+  Breadcrumb component for product pages
+  Usage: {% include breadcrumb.html %}
+{% endcomment %}
+{% assign cat_data = site.data.categories[page.category] %}
+<nav aria-label="breadcrumb" class="mb-0">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="{{ site.baseurl }}/" class="text-decoration-none">Home</a></li>
+        {% if cat_data %}
+        <li class="breadcrumb-item"><a href="{{ site.baseurl }}/{{ page.category }}/" class="text-decoration-none">{{ cat_data.name }}</a></li>
+        {% endif %}
+        <li class="breadcrumb-item active" aria-current="page">{{ page.title | truncate: 40 }}</li>
+    </ol>
+</nav>

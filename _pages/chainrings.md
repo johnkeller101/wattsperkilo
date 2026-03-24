@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: ranking
 title: Chainrings
 category: chainrings
 permalink: /chainrings/

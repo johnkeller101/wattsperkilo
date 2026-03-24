@@ -1,0 +1,52 @@
+{% comment %}
+  Product card for ranking pages and "other products" sections
+  Usage: {% include product-card.html product=product %}
+{% endcomment %}
+{% assign p = include.product %}
+<div class="card card-product h-100">
+    {% assign has_card_image = false %}
+    {% if p.outline and p.outline != "" %}{% assign has_card_image = true %}{% endif %}
+    {% if p.image and p.image != "" %}{% assign has_card_image = true %}{% endif %}
+    {% assign color_index = p.title | size | modulo: 6 | plus: 1 %}
+    <a href="{{ site.baseurl }}{{ p.url }}" class="outline-container {% if has_card_image %}outline-bg-{{ color_index }}{% endif %} text-decoration-none d-flex align-items-center justify-content-center" style="aspect-ratio: 4/3;">
+        {% if p.outline and p.outline != "" %}
+        <img src="{{ site.baseurl }}/{{ p.outline }}" class="p-3" alt="{{ p.title }}" style="max-height: 100%; object-fit: contain;">
+        {% elsif p.image and p.image != "" %}
+        <img src="{% if p.image contains '://' %}{{ p.image }}{% else %}{{ site.baseurl }}/{{ p.image }}{% endif %}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+        {% else %}
+        {% include outline-placeholder.html %}
+        {% endif %}
+    </a>
+    <div class="card-body position-relative">
+        {% if p.overall_score and p.overall_score > 0 %}
+        <div class="position-absolute" style="top: -20px; right: 1rem;">
+            {% include score-ring.html score=p.overall_score size="sm" %}
+        </div>
+        {% endif %}
+        <div class="d-flex align-items-center gap-1 flex-wrap mb-2">
+            {% if p.status == "tested" %}
+            <span class="tested-badge-sm" title="Tested">
+                <i class="bi bi-patch-check-fill text-primary"></i>
+                <small class="text-primary fw-semibold">Tested</small>
+            </span>
+            {% endif %}
+        </div>
+        <h5 class="card-title fw-bold mb-1">
+            <a href="{{ site.baseurl }}{{ p.url }}" class="text-decoration-none text-body">{{ p.title }}</a>
+        </h5>
+        {% if p.specs %}
+        <div class="text-body-secondary small mb-2">{% assign spec_sep = "" %}{% if p.specs.weight_measured %}{{ p.specs.weight_measured }}g{% assign spec_sep = " · " %}{% endif %}{% if p.specs.weight_claimed and p.specs.weight_measured == nil %}~{{ p.specs.weight_claimed }}g{% assign spec_sep = " · " %}{% endif %}{% if p.specs.price %}{{ spec_sep }}${{ p.specs.price }}{% assign spec_sep = " · " %}{% endif %}{% if p.specs.material %}{{ spec_sep }}{{ p.specs.material }}{% endif %}</div>
+        {% endif %}
+        {% if p.best_for and p.best_for.size > 0 %}
+        <div class="mb-2">
+            {% include best-for-tags.html tags=p.best_for %}
+        </div>
+        {% endif %}
+        {% if p.summary %}
+        <p class="card-text text-body-secondary small mb-0">{{ p.summary | truncate: 120 }}</p>
+        {% endif %}
+    </div>
+    <div class="card-footer bg-transparent border-0 pt-0">
+        <a href="{{ site.baseurl }}{{ p.url }}" class="text-decoration-none small">View details &rarr;</a>
+    </div>
+</div>

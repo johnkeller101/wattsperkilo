@@ -1,32 +1,47 @@
 ---
-title: "Categories"
+title: "Blog"
 layout: default
-permalink: "/categories"
-description: "Browse reviews and articles by category: rotors, chainrings, cranks, handlebars, wheels, accessories, training, and more."
+permalink: "/blog/"
+description: "Training, racing, and cycling articles."
 ---
 
-<div class="container">
-    <header class="py-5 mb-4 border-bottom">
-        <div class="text-center">
-            <h1 class="fw-bold">Categories</h1>
-        </div>
+{% comment %} Filter out product review posts {% endcomment %}
+{% assign product_categories = "" | split: "" %}
+{% for cat in site.data.categories %}
+    {% assign product_categories = product_categories | push: cat[0] %}
+{% endfor %}
+{% assign review_categories = "reviews,first ride" | split: "," %}
+{% assign blog_posts = "" | split: "" %}
+{% for p in site.posts %}
+    {% assign is_product_post = false %}
+    {% for pc in p.categories %}
+        {% if product_categories contains pc %}
+            {% assign is_product_post = true %}
+        {% endif %}
+        {% if review_categories contains pc %}
+            {% assign is_product_post = true %}
+        {% endif %}
+    {% endfor %}
+    {% unless is_product_post %}
+        {% assign blog_posts = blog_posts | push: p %}
+    {% endunless %}
+{% endfor %}
+
+<div class="container py-4">
+    <header class="mb-4">
+        <h1 class="fw-bold">Blog</h1>
+        <p class="text-body-secondary">Training, racing, and cycling articles.</p>
     </header>
 
-    {% for category in site.categories %}
-    <section class="mb-5">
-        <h3 class="fw-bold pb-3 mb-4 border-bottom" id="{{ category[0] | downcase }}">{{ category[0] | capitalize }}</h3>
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% assign pages_list = category[1] %}
-            {% for post in pages_list %}
-            {% if post.title != null %}
-            <div class="col">
-                {% include card.html %}
-            </div>
-            {% endif %}
-            {% endfor %}
-            {% assign pages_list = nil %}
+    {% if blog_posts.size > 0 %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in blog_posts %}
+        <div class="col">
+            {% include card.html show_footer=true %}
         </div>
-    </section>
-    {% endfor %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-body-secondary text-center py-5">No blog posts yet.</p>
+    {% endif %}
 </div>

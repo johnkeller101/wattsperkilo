@@ -1,0 +1,107 @@
+cassettes:
+  name: "Cassettes"
+  description: "12-speed road cassette reviews ranked by shifting quality, weight, and durability"
+  icon: "bi-gear"
+  spec_columns: ["weight_measured", "price", "speeds", "gear_range", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    speeds: "Speeds"
+    gear_range: "Range"
+    material: "Material"
+
+handlebars:
+  name: "Handlebars"
+  description: "Integrated and standard handlebar reviews ranked by stiffness, comfort, and weight"
+  icon: "bi-grip-horizontal"
+  spec_columns: ["weight_measured", "price", "width", "reach", "drop", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    width: "Width"
+    reach: "Reach"
+    drop: "Drop"
+    material: "Material"
+
+wheels:
+  name: "Wheels"
+  description: "Road wheelset reviews ranked by aerodynamics, weight, and durability"
+  icon: "bi-circle"
+  spec_columns: ["weight_measured", "price", "depth", "width_internal", "brake_type", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    depth: "Depth"
+    width_internal: "Internal Width"
+    brake_type: "Brake Type"
+    material: "Material"
+
+cranks:
+  name: "Cranks"
+  description: "Crankarm reviews ranked by stiffness, weight, and compatibility"
+  icon: "bi-arrow-repeat"
+  spec_columns: ["weight_measured", "price", "length", "material", "bb_standard"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    length: "Length"
+    material: "Material"
+    bb_standard: "BB Standard"
+
+rotors:
+  name: "Rotors"
+  description: "Disc brake rotor reviews ranked by braking power, weight, and noise"
+  icon: "bi-disc"
+  spec_columns: ["weight_measured", "price", "size", "mount_type", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    size: "Size"
+    mount_type: "Mount"
+    material: "Material"
+
+chainrings:
+  name: "Chainrings"
+  description: "Chainring reviews ranked by shifting quality, weight, and durability"
+  icon: "bi-gear-wide-connected"
+  spec_columns: ["weight_measured", "price", "teeth", "bcd", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    teeth: "Teeth"
+    bcd: "BCD"
+    material: "Material"
+
+pedals:
+  name: "Pedals"
+  description: "Clipless pedal reviews ranked by power transfer, weight, and ease of use"
+  icon: "bi-box"
+  spec_columns: ["weight_measured", "price", "platform_area", "stack_height", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    platform_area: "Platform Area"
+    stack_height: "Stack Height"
+    material: "Material"
+
+saddles:
+  name: "Saddles"
+  description: "Road saddle reviews ranked by comfort, weight, and fit"
+  icon: "bi-triangle"
+  spec_columns: ["weight_measured", "price", "width", "length", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    width: "Width"
+    length: "Length"
+    material: "Material"
+
+accessories:
+  name: "Accessories"
+  description: "Cycling accessory reviews including computer mounts, bottle cages, and more"
+  icon: "bi-tools"
+  spec_columns: ["weight_measured", "price", "material"]
+  spec_labels:
+    weight_measured: "Weight (g)"
+    price: "Price"
+    material: "Material"

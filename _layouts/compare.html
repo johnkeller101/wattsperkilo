@@ -1,0 +1,426 @@
+---
+layout: default
+---
+{% include products-json.html %}
+
+<div class="container py-4">
+    <header class="mb-4">
+        <h1 class="fw-bold">{{ page.title }}</h1>
+        {% if page.description %}
+        <p class="text-body-secondary mb-0">{{ page.description }}</p>
+        {% endif %}
+    </header>
+
+    <!-- Compare Tool -->
+    <div id="compareTool">
+        <!-- Category scroll strip -->
+        <div class="mb-4">
+            <div class="scroll-strip-container">
+                <div class="scroll-strip" id="compareCategoryStrip">
+                    {% for cat in site.data.categories %}
+                    {% assign cat_key = cat[0] %}
+                    {% assign cat_data = cat[1] %}
+                    {% assign cat_products = site.products | where: "category", cat_key %}
+                    {% assign cat_scored = 0 %}
+                    {% for p in cat_products %}
+                        {% if p.overall_score and p.overall_score > 0 %}{% assign cat_scored = cat_scored | plus: 1 %}{% endif %}
+                    {% endfor %}
+                    {% assign cat_disabled = false %}
+                    {% if cat_scored < 2 %}{% assign cat_disabled = true %}{% endif %}
+                    {% assign cat_icon_svg = "" %}
+                    {% for p in cat_products %}
+                        {% if p.outline and p.outline != "" and cat_icon_svg == "" %}
+                            {% assign cat_icon_svg = p.outline %}
+                        {% endif %}
+                    {% endfor %}
+                    <button type="button" class="card text-center text-decoration-none border compare-cat-btn{% if cat_disabled %} disabled{% endif %}" style="width: 120px;{% if cat_disabled %} opacity: 0.4; cursor: default;{% else %} cursor: pointer;{% endif %}" data-category="{{ cat_key }}"{% if cat_disabled %} disabled{% endif %}>
+                        <div class="card-body py-2 px-2">
+                            {% if cat_icon_svg != "" %}
+                            <div class="outline-container rounded mx-auto mb-1 d-flex align-items-center justify-content-center" style="width: 56px; height: 40px;">
+                                <img src="{{ site.baseurl }}/{{ cat_icon_svg }}" alt="{{ cat_data.name }}" style="max-height: 32px; max-width: 48px; object-fit: contain;">
+                            </div>
+                            {% else %}
+                            <div class="d-flex align-items-center justify-content-center mb-1" style="width: 56px; height: 40px; margin: 0 auto;">
+                                <i class="bi {{ cat_data.icon }} fs-4 text-primary"></i>
+                            </div>
+                            {% endif %}
+                            <small class="fw-bold d-block" style="font-size: 0.75rem;">{{ cat_data.name }}</small>
+                        </div>
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden category select (used by JS) -->
+        <select class="d-none" id="compareCategory"></select>
+
+        <!-- Product selectors -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label class="form-label fw-semibold small text-body-secondary">Product A</label>
+                <select class="form-select" id="compareProductA" disabled>
+                    <option value="">Select product...</option>
+                </select>
+                <select class="form-select form-select-sm mt-1 d-none" id="variantA"></select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold small text-body-secondary">Product B</label>
+                <select class="form-select" id="compareProductB" disabled>
+                    <option value="">Select product...</option>
+                </select>
+                <select class="form-select form-select-sm mt-1 d-none" id="variantB"></select>
+            </div>
+        </div>
+
+        <!-- Visual comparison -->
+        <div id="compareResult" class="d-none">
+            <!-- Product cards side by side -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="card card-stat" id="cardA">
+                        <div class="card-body text-center py-3">
+                            <div id="cardA-svg" class="mb-2"></div>
+                            <h5 class="fw-bold mb-1" id="cardA-name"></h5>
+                            <div id="cardA-score" class="mb-2"></div>
+                            <div id="cardA-buy" class="d-flex justify-content-center gap-2 flex-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-stat" id="cardB">
+                        <div class="card-body text-center py-3">
+                            <div id="cardB-svg" class="mb-2"></div>
+                            <h5 class="fw-bold mb-1" id="cardB-name"></h5>
+                            <div id="cardB-score" class="mb-2"></div>
+                            <div id="cardB-buy" class="d-flex justify-content-center gap-2 flex-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Score bars comparison -->
+            <div id="compareBars" class="mb-4"></div>
+
+            <!-- Specs table -->
+            <div class="table-responsive">
+                <table class="table table-bordered" id="compareTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;"></th>
+                            <th id="compareHeaderA" style="width: 35%;"></th>
+                            <th id="compareHeaderB" style="width: 35%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="compareBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    var products = window.wpkProducts || [];
+    var categories = window.wpkCategories || {};
+
+    var catSelect = document.getElementById('compareCategory');
+    var prodASelect = document.getElementById('compareProductA');
+    var prodBSelect = document.getElementById('compareProductB');
+    var varASelect = document.getElementById('variantA');
+    var varBSelect = document.getElementById('variantB');
+    var result = document.getElementById('compareResult');
+    var headerA = document.getElementById('compareHeaderA');
+    var headerB = document.getElementById('compareHeaderB');
+    var body = document.getElementById('compareBody');
+    var barsEl = document.getElementById('compareBars');
+
+    // Category strip buttons
+    var catBtns = document.querySelectorAll('.compare-cat-btn');
+    var selectedCat = '';
+
+    function selectCategory(cat) {
+        selectedCat = cat;
+        catSelect.value = cat;
+        catBtns.forEach(function(btn) {
+            if (btn.dataset.category === cat) {
+                btn.classList.add('border-primary', 'shadow-sm');
+                btn.classList.remove('border');
+            } else {
+                btn.classList.remove('border-primary', 'shadow-sm');
+                btn.classList.add('border');
+            }
+        });
+        populateProducts(cat);
+        varASelect.innerHTML = '';
+        varASelect.classList.add('d-none');
+        varBSelect.innerHTML = '';
+        varBSelect.classList.add('d-none');
+        result.classList.add('d-none');
+    }
+
+    catBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            if (this.disabled) return;
+            selectCategory(this.dataset.category);
+        });
+    });
+
+    function populateProducts(cat) {
+        var catProducts = products.filter(function(p) { return p.category === cat; })
+            .sort(function(a, b) { return b.overall_score - a.overall_score; });
+
+        [prodASelect, prodBSelect].forEach(function(sel) {
+            var currentVal = sel.value;
+            var skip = (sel === prodBSelect) ? prodASelect.value : (sel === prodASelect ? prodBSelect.value : '');
+            sel.innerHTML = '<option value="">Select product...</option>';
+            sel.disabled = !cat;
+            catProducts.forEach(function(p) {
+                if (p.slug === skip) return;
+                var opt = document.createElement('option');
+                opt.value = p.slug;
+                var scoreText = p.overall_score > 0 ? ' (' + p.overall_score + ')' : '';
+                var typeLabel = '';
+                if (p.product_type === 'set') typeLabel = ' [Set]';
+                else if (p.product_type === 'component') typeLabel = ' [' + (p.component_position || 'Component') + ']';
+                opt.textContent = p.title + scoreText + typeLabel;
+                if (p.slug === currentVal) opt.selected = true;
+                sel.appendChild(opt);
+            });
+        });
+    }
+
+    function populateVariants(prodSelect, varSelect) {
+        var slug = prodSelect.value;
+        var prod = slug ? products.find(function(p) { return p.slug === slug; }) : null;
+        if (prod && prod.variants && prod.variants.options && prod.variants.options.length > 0) {
+            varSelect.innerHTML = '<option value="">Default specs</option>';
+            prod.variants.options.forEach(function(opt, i) {
+                var el = document.createElement('option');
+                el.value = i;
+                el.textContent = opt.name + (opt.tested ? ' (tested)' : '');
+                varSelect.appendChild(el);
+            });
+            varSelect.classList.remove('d-none');
+        } else {
+            varSelect.innerHTML = '';
+            varSelect.classList.add('d-none');
+        }
+    }
+
+    function getSpecsWithVariant(prod, varSelect) {
+        var specs = Object.assign({}, prod.specs);
+        var idx = varSelect.value;
+        if (idx !== '' && prod.variants && prod.variants.options) {
+            var opt = prod.variants.options[parseInt(idx)];
+            if (opt) {
+                for (var key in opt) {
+                    if (key !== 'name' && key !== 'tested' && key !== 'note') {
+                        specs[key] = opt[key];
+                    }
+                }
+            }
+        }
+        return specs;
+    }
+
+    function getVariantLabel(prod, varSelect) {
+        var idx = varSelect.value;
+        if (idx !== '' && prod.variants && prod.variants.options) {
+            var opt = prod.variants.options[parseInt(idx)];
+            if (opt) return opt.name;
+        }
+        return null;
+    }
+
+    function scoreColor(val) {
+        return window.wpkCompare ? window.wpkCompare.scoreColor(val) : 'var(--bs-primary)';
+    }
+
+    function ringHTML(score, size) {
+        if (!score || score <= 0) return '';
+        var r = size === 'lg' ? 46 : 30;
+        var sw = size === 'lg' ? 8 : 6;
+        var vb = size === 'lg' ? 108 : 72;
+        var cx = vb / 2;
+        var circ = r * 2 * Math.PI;
+        var offset = circ - (score / 10) * circ;
+        var color = scoreColor(score);
+        var cls = size === 'lg' ? 'score-ring-lg' : 'score-ring-md';
+        return '<div class="score-ring ' + cls + '" style="display:inline-flex">' +
+            '<svg viewBox="0 0 ' + vb + ' ' + vb + '" width="100%" height="100%">' +
+            '<circle class="score-ring-bg" cx="' + cx + '" cy="' + cx + '" r="' + r + '" stroke-width="' + sw + '" />' +
+            '<circle class="score-ring-fill" cx="' + cx + '" cy="' + cx + '" r="' + r + '" stroke-width="' + sw + '" stroke="' + color + '" stroke-dasharray="' + circ + '" stroke-dashoffset="' + offset + '" stroke-linecap="round" />' +
+            '</svg>' +
+            '<span class="score-ring-text" style="color:' + color + '">' + score + '</span>' +
+            '</div>';
+    }
+
+    function renderComparison() {
+        var slugA = prodASelect.value;
+        var slugB = prodBSelect.value;
+        if (!slugA || !slugB) { result.classList.add('d-none'); return; }
+
+        var a = products.find(function(p) { return p.slug === slugA; });
+        var b = products.find(function(p) { return p.slug === slugB; });
+        if (!a || !b) return;
+
+        // Variant-overridden specs
+        var specsA = getSpecsWithVariant(a, varASelect);
+        var specsB = getSpecsWithVariant(b, varBSelect);
+        var varLabelA = getVariantLabel(a, varASelect);
+        var varLabelB = getVariantLabel(b, varBSelect);
+
+        // Update URL
+        var url = new URL(window.location);
+        url.searchParams.set('cat', a.category);
+        url.searchParams.set('a', slugA);
+        url.searchParams.set('b', slugB);
+        if (varASelect.value) url.searchParams.set('va', varASelect.value);
+        else url.searchParams.delete('va');
+        if (varBSelect.value) url.searchParams.set('vb', varBSelect.value);
+        else url.searchParams.delete('vb');
+        history.replaceState(null, '', url);
+
+        // Product cards
+        var placeholderSVG = '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:60%;height:60%;opacity:0.3"><circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="32" r="12" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="32" r="4" fill="currentColor"/><line x1="32" y1="8" x2="32" y2="16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="32" y1="48" x2="32" y2="56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8" y1="32" x2="16" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="48" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="15" y1="15" x2="20.7" y2="20.7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="43.3" y1="43.3" x2="49" y2="49" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="49" y1="15" x2="43.3" y2="20.7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="20.7" y1="43.3" x2="15" y2="49" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+
+        function fillCard(prefix, p) {
+            var svgEl = document.getElementById(prefix + '-svg');
+            var nameEl = document.getElementById(prefix + '-name');
+            var scoreEl = document.getElementById(prefix + '-score');
+            var colorIdx = (p.title.length % 6) + 1;
+            var bgClass = p.outline ? ' outline-bg-' + colorIdx : '';
+            var inner = '';
+            if (p.outline) {
+                inner = '<img src="' + p.outline + '" style="max-height:80px;max-width:90%;object-fit:contain" alt="' + p.title + '">';
+            } else if (p.image) {
+                inner = '<img src="' + p.image + '" style="max-height:80px;max-width:90%;object-fit:contain" alt="' + p.title + '">';
+            } else {
+                inner = placeholderSVG;
+            }
+            svgEl.innerHTML = '<div class="outline-container' + bgClass + ' rounded mx-auto d-flex align-items-center justify-content-center" style="width:140px;height:100px">' + inner + '</div>';
+            nameEl.innerHTML = '<a href="' + p.url + '" class="text-decoration-none text-body">' + p.title + '</a>';
+            scoreEl.innerHTML = ringHTML(p.overall_score, 'md');
+            var buyEl = document.getElementById(prefix + '-buy');
+            var q = encodeURIComponent(p.title);
+            buyEl.innerHTML = '<a href="https://www.amazon.com/s?k=' + q + '" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-dark"><i class="bi bi-box-seam me-1"></i>Amazon</a>' +
+                '<a href="https://www.aliexpress.com/wholesale?SearchText=' + q + '" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-warning"><i class="bi bi-cart me-1"></i>AliExpress</a>';
+        }
+        fillCard('cardA', a);
+        fillCard('cardB', b);
+
+        // Score bars comparison
+        var barsHTML = '';
+        if (a.scores && b.scores) {
+            var scoring = window.wpkScoring && window.wpkScoring[a.category];
+            var dims = scoring ? scoring.dimensions : a.scores;
+            barsHTML += '<h6 class="fw-semibold mb-3">Score Comparison</h6>';
+            for (var key in dims) {
+                var label = (scoring && scoring.dimensions[key]) || key;
+                var sa = a.scores[key] || 0;
+                var sb = b.scores[key] || 0;
+                if (sa > 0 || sb > 0) {
+                    var colorA = scoreColor(sa);
+                    var colorB = scoreColor(sb);
+                    barsHTML += '<div class="row align-items-center mb-2 g-1">' +
+                        '<div class="col-2 col-md-1 text-end"><small class="fw-semibold" style="color:' + colorA + '">' + sa + '</small></div>' +
+                        '<div class="col"><div class="score-bar-track"><div class="score-bar-fill" style="width:' + (sa * 10) + '%;background:' + colorA + ';opacity:0.8"></div></div></div>' +
+                        '<div class="col-auto"><small class="text-body-secondary" style="min-width:70px;display:inline-block;text-align:center">' + label + '</small></div>' +
+                        '<div class="col"><div class="score-bar-track"><div class="score-bar-fill" style="width:' + (sb * 10) + '%;background:' + colorB + ';opacity:0.8"></div></div></div>' +
+                        '<div class="col-2 col-md-1"><small class="fw-semibold" style="color:' + colorB + '">' + sb + '</small></div>' +
+                        '</div>';
+                }
+            }
+        }
+        barsEl.innerHTML = barsHTML;
+
+        // Table headers
+        var titleAHTML = a.title + (varLabelA ? ' <small class="text-body-secondary">(' + varLabelA + ')</small>' : '');
+        var titleBHTML = b.title + (varLabelB ? ' <small class="text-body-secondary">(' + varLabelB + ')</small>' : '');
+        headerA.innerHTML = '<a href="' + a.url + '" class="text-decoration-none">' + titleAHTML + '</a>';
+        headerB.innerHTML = '<a href="' + b.url + '" class="text-decoration-none">' + titleBHTML + '</a>';
+
+        // Specs table
+        var rows = '';
+        if (specsA && specsB) {
+            var catData = categories[a.category];
+            var cols = catData ? catData.spec_columns : Object.keys(specsA);
+            var labels = catData ? catData.spec_labels : {};
+            cols.forEach(function(col) {
+                var label = labels[col] || col;
+                var valA = specsA[col];
+                var valB = specsB[col];
+                var better = (col.indexOf('weight') >= 0 || col === 'price') ? 'lower' : null;
+                rows += compareRow(label, formatSpec(col, valA), formatSpec(col, valB), better);
+            });
+        }
+        rows += compareRow('Status', a.status, b.status, null);
+
+        body.innerHTML = rows;
+        result.classList.remove('d-none');
+    }
+
+    function compareRow(label, valA, valB, betterDir) {
+        var classA = '', classB = '';
+        if (betterDir && typeof valA === 'number' && typeof valB === 'number') {
+            if (betterDir === 'higher') {
+                if (valA > valB) classA = ' class="table-success"';
+                else if (valB > valA) classB = ' class="table-success"';
+            } else {
+                if (valA < valB) classA = ' class="table-success"';
+                else if (valB < valA) classB = ' class="table-success"';
+            }
+        }
+        var a = valA != null ? valA : '—';
+        var b = valB != null ? valB : '—';
+        return '<tr><td class="text-body-secondary">' + label + '</td><td' + classA + '>' + a + '</td><td' + classB + '>' + b + '</td></tr>';
+    }
+
+    function formatSpec(col, val) {
+        if (val == null) return null;
+        if (col === 'price') return '$' + val;
+        if (col.indexOf('weight') >= 0) return val + 'g';
+        return val;
+    }
+
+    prodASelect.addEventListener('change', function() {
+        populateVariants(prodASelect, varASelect);
+        populateProducts(selectedCat);
+        renderComparison();
+    });
+    prodBSelect.addEventListener('change', function() {
+        populateVariants(prodBSelect, varBSelect);
+        populateProducts(selectedCat);
+        renderComparison();
+    });
+    varASelect.addEventListener('change', function() { renderComparison(); });
+    varBSelect.addEventListener('change', function() { renderComparison(); });
+
+    // Deep-link support: /compare/?cat=cassettes&a=slug1&b=slug2&va=0&vb=1
+    function initFromURL() {
+        var params = new URLSearchParams(window.location.search);
+        var cat = params.get('cat');
+        var slugA = params.get('a');
+        var slugB = params.get('b');
+        var va = params.get('va');
+        var vb = params.get('vb');
+        if (cat) {
+            selectCategory(cat);
+            if (slugA) {
+                prodASelect.value = slugA;
+                populateVariants(prodASelect, varASelect);
+                if (va !== null) varASelect.value = va;
+            }
+            if (slugB) {
+                prodBSelect.value = slugB;
+                populateVariants(prodBSelect, varBSelect);
+                if (vb !== null) varBSelect.value = vb;
+            }
+            if (slugA && slugB) renderComparison();
+        }
+    }
+    initFromURL();
+})();
+</script>

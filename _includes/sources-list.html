@@ -1,0 +1,22 @@
+{% comment %}
+  Sources list component — renders external review links for aggregated products
+  Usage: {% include sources-list.html sources=page.sources %}
+{% endcomment %}
+{% assign sources = include.sources | default: page.sources %}
+{% if sources and sources.size > 0 %}
+<div class="sources-list mt-4">
+    <h5 class="fw-semibold mb-3">Sources</h5>
+    <p class="text-body-secondary small mb-3">Scores are based on aggregated data from the following reviews and discussions:</p>
+    <ul class="list-unstyled">
+        {% for source in sources %}
+        <li class="mb-2">
+            <a href="{{ source.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                <i class="bi bi-box-arrow-up-right me-1 small"></i>
+                {{ source.title }}
+            </a>
+            <span class="text-body-secondary small ms-1">— {{ source.site }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

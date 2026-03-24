@@ -1,0 +1,24 @@
+dimensions:
+  shifting: "Shift Quality"
+  weight: "Weight"
+  durability: "Durability"
+  finish: "Finish Quality"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      shifting: 30
+      weight: 20
+      durability: 25
+      finish: 10
+      value: 15
+  racing:
+    label: "Racing"
+    weights:
+      shifting: 25
+      weight: 35
+      durability: 15
+      finish: 10
+      value: 15

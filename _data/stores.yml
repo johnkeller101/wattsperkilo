@@ -1,0 +1,42 @@
+amazon:
+  name: "Amazon"
+  icon: "bi-box-seam"
+  btn: "btn-outline-dark"
+  search_url: "https://www.amazon.com/s?k="
+
+aliexpress:
+  name: "AliExpress"
+  icon: "bi-cart"
+  btn: "btn-outline-warning"
+  search_url: "https://www.aliexpress.com/wholesale?SearchText="
+
+ebay:
+  name: "eBay"
+  icon: "bi-bag"
+  btn: "btn-outline-info"
+  search_url: "https://www.ebay.com/sch/i.html?_nkw="
+
+wiggle:
+  name: "Wiggle"
+  icon: "bi-bicycle"
+  btn: "btn-outline-success"
+
+competitive_cyclist:
+  name: "Competitive Cyclist"
+  icon: "bi-bicycle"
+  btn: "btn-outline-danger"
+
+chain_reaction:
+  name: "Chain Reaction"
+  icon: "bi-bicycle"
+  btn: "btn-outline-primary"
+
+panda_podium:
+  name: "Panda Podium"
+  icon: "bi-shop"
+  btn: "btn-outline-success"
+
+manufacturer:
+  name: "Manufacturer"
+  icon: "bi-shop"
+  btn: "btn-outline-secondary"

@@ -1,0 +1,46 @@
+{% comment %}
+  Quick-answer banner — shows #1 pick for a category
+  Usage: {% include quick-answer.html product=top_product %}
+{% endcomment %}
+{% assign qa = include.product %}
+{% if qa %}
+<div class="card card-stat mb-4">
+    <div class="card-body">
+        <div class="row align-items-center g-3">
+            {% if qa.outline and qa.outline != "" %}
+            <div class="col-auto">
+                {% assign color_index = qa.title | size | modulo: 6 | plus: 1 %}
+                <a href="{{ site.baseurl }}{{ qa.url }}" class="outline-container outline-bg-{{ color_index }} rounded d-block" style="width: 120px; height: 90px;">
+                    <img src="{{ site.baseurl }}/{{ qa.outline }}" alt="{{ qa.title }}" style="max-height: 80px; max-width: 110px; object-fit: contain;">
+                </a>
+            </div>
+            {% endif %}
+            <div class="col">
+                <small class="text-body-secondary fw-semibold text-uppercase" style="letter-spacing: 0.05em;">My Pick</small>
+                <h4 class="fw-bold mb-1">
+                    <a href="{{ site.baseurl }}{{ qa.url }}" class="text-decoration-none text-body">{{ qa.title }}</a>
+                </h4>
+                <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+                    {% if qa.status == "tested" %}
+                    <span class="tested-badge-sm"><i class="bi bi-patch-check-fill text-primary"></i> <small class="text-primary fw-semibold">Tested</small></span>
+                    {% endif %}
+                </div>
+                {% if qa.summary %}
+                <p class="text-body-secondary small mb-1">{{ qa.summary | truncate: 160 }}</p>
+                {% endif %}
+                {% if qa.best_for and qa.best_for.size > 0 %}
+                <div class="mt-1">{% include best-for-tags.html tags=qa.best_for %}</div>
+                {% endif %}
+            </div>
+            <div class="col-auto text-center">
+                {% if qa.overall_score and qa.overall_score > 0 %}
+                {% include score-ring.html score=qa.overall_score size="md" %}
+                {% endif %}
+                <div class="mt-2">
+                    <a href="{{ site.baseurl }}{{ qa.url }}" class="btn btn-sm btn-outline-primary">View Review</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

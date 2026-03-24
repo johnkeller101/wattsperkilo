@@ -1,0 +1,11 @@
+{% comment %}
+  Tested badge component — blue checkmark + "Tested" label
+  Usage: {% include tested-badge.html %}
+  Only renders if page.status == "tested"
+{% endcomment %}
+{% if include.status == "tested" or page.status == "tested" %}
+<span class="tested-badge" title="Personally tested and verified by Watts Per Kilo">
+    <i class="bi bi-patch-check-fill text-primary"></i>
+    <span class="tested-label">Tested</span>
+</span>
+{% endif %}

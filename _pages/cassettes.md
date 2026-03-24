@@ -1,7 +1,7 @@
 ---
-layout: category
+layout: ranking
 title: Cassettes
 category: cassettes
 permalink: /cassettes/
-description: "Cassette reviews covering weight, shifting, durability, and value across Shimano and AliExpress options."
+description: "12-speed road cassette reviews ranked by shifting quality, weight, and durability"
 ---

@@ -17,12 +17,19 @@ permalink: /:title/
 
 url: "https://wattsperkilo.cc" # the base hostname & protocol for your site
 
+# Collections
+collections:
+  products:
+    output: true
+    permalink: /products/:path/
+
 # Plugins
-plugins: 
+plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-redirect-from
   
 authors:
     john:
@@ -48,6 +55,13 @@ defaults:
       path: "_pages"
     values:
       layout: page
+
+  # all products
+  - scope:
+      path: ""
+      type: "products"
+    values:
+      layout: product
       
 # Syntax
 markdown: kramdown

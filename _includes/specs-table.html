@@ -1,0 +1,118 @@
+{% comment %}
+  Specs table component — renders key specs from category config
+  Usage: {% include specs-table.html %}
+  Reads: page.category, page.specs, site.data.categories
+{% endcomment %}
+{% assign cat_data = site.data.categories[page.category] %}
+{% if page.specs and cat_data %}
+<div class="specs-table my-3">
+    <table class="table table-sm mb-0">
+        <tbody>
+            {% for col in cat_data.spec_columns %}
+                {% assign val = page.specs[col] %}
+                {% if val %}
+                <tr>
+                    <th class="text-body-secondary" style="width: 40%;">{{ cat_data.spec_labels[col] }}</th>
+                    <td>
+                        {% if col == "price" %}${{ val }}{% elsif col contains "weight" %}{{ val }}g{% else %}{{ val }}{% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+            {% if page.specs.freehub %}
+            <tr>
+                <th class="text-body-secondary">Freehub</th>
+                <td>{{ page.specs.freehub }}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% comment %} Variant options table (cassettes, rotors, etc.) {% endcomment %}
+{% if page.variants and page.variants.options %}
+<div class="specs-table my-3">
+    <h6 class="text-body-secondary mb-2">Available Configurations</h6>
+    <table class="table table-sm mb-0">
+        <thead>
+            <tr>
+                <th>{{ page.variants.label | default: "Option" }}</th>
+                {% assign var_cols = "" | split: "" %}
+                {% for opt in page.variants.options %}
+                    {% for prop in opt %}
+                        {% unless prop[0] == "name" or prop[0] == "tested" or prop[0] == "note" %}
+                            {% unless var_cols contains prop[0] %}
+                                {% assign var_cols = var_cols | push: prop[0] %}
+                            {% endunless %}
+                        {% endunless %}
+                    {% endfor %}
+                {% endfor %}
+                {% for vc in var_cols %}
+                <th>{{ vc | replace: "_", " " | capitalize }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for opt in page.variants.options %}
+            <tr{% if opt.tested %} class="table-active"{% endif %}>
+                <td>{{ opt.name }}{% if opt.tested %} <i class="bi bi-patch-check-fill text-primary" title="Tested configuration"></i>{% endif %}</td>
+                {% for vc in var_cols %}
+                    {% assign oval = opt[vc] %}
+                    <td>{% if oval %}{% if vc contains "weight" %}{{ oval }}g{% elsif vc == "price" %}${{ oval }}{% else %}{{ oval }}{% endif %}{% else %}—{% endif %}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if page.variants.note %}
+    <small class="text-body-secondary">{{ page.variants.note }}</small>
+    {% endif %}
+</div>
+{% endif %}
+
+{% comment %} Set product component table (e.g., front/rear wheels) {% endcomment %}
+{% if page.product_type == "set" and page.components %}
+<div class="specs-table my-3">
+    <h6 class="text-body-secondary mb-2">Component Specs</h6>
+    {% assign comp_products = "" | split: "" %}
+    {% for comp in page.components %}
+        {% assign comp_slug = comp.slug %}
+        {% assign comp_prod = site.products | where: "slug", comp_slug | first %}
+        {% if comp_prod %}
+            {% assign comp_products = comp_products | push: comp_prod %}
+        {% endif %}
+    {% endfor %}
+    {% if comp_products.size > 0 %}
+    {% assign comp_keys = "" | split: "" %}
+    {% for cp in comp_products %}
+        {% for spec in cp.specs %}
+            {% unless comp_keys contains spec[0] %}
+                {% assign comp_keys = comp_keys | push: spec[0] %}
+            {% endunless %}
+        {% endfor %}
+    {% endfor %}
+    <table class="table table-sm mb-0">
+        <thead>
+            <tr>
+                <th></th>
+                {% for cp in comp_products %}
+                <th><a href="{{ site.baseurl }}{{ cp.url }}" class="text-decoration-none">{{ cp.title }}</a></th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for key in comp_keys %}
+            <tr>
+                <th class="text-body-secondary">{{ key | replace: "_", " " | capitalize }}</th>
+                {% for cp in comp_products %}
+                    {% assign cval = cp.specs[key] %}
+                    <td>{% if cval %}{% if key contains "weight" %}{{ cval }}g{% elsif key == "price" %}${{ cval }}{% else %}{{ cval }}{% endif %}{% else %}—{% endif %}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,43 @@
+{% comment %}
+  Category grid — horizontal scroll strip using product SVGs as icons
+  Usage: {% include category-grid.html %}
+{% endcomment %}
+<div class="scroll-strip-container">
+    <div class="scroll-strip">
+        {% for cat in site.data.categories %}
+        {% assign cat_key = cat[0] %}
+        {% assign cat_data = cat[1] %}
+        {% assign cat_products = site.products | where: "category", cat_key %}
+        {% if cat_products.size > 0 %}
+        {% assign scored_count = 0 %}
+        {% for p in cat_products %}
+            {% if p.overall_score and p.overall_score > 0 %}{% assign scored_count = scored_count | plus: 1 %}{% endif %}
+        {% endfor %}
+        {% comment %} Find first product with an SVG outline to use as category icon {% endcomment %}
+        {% assign cat_icon_svg = "" %}
+        {% for p in cat_products %}
+            {% if p.outline and p.outline != "" and cat_icon_svg == "" %}
+                {% assign cat_icon_svg = p.outline %}
+            {% endif %}
+        {% endfor %}
+        <a href="{{ site.baseurl }}/{{ cat_key }}/" class="card card-product text-center text-decoration-none" style="width: 140px;">
+            <div class="card-body py-3 px-2">
+                {% if cat_icon_svg != "" %}
+                <div class="outline-container rounded mx-auto mb-2" style="width: 64px; height: 48px;">
+                    <img src="{{ site.baseurl }}/{{ cat_icon_svg }}" alt="{{ cat_data.name }}" style="max-height: 40px; max-width: 56px; object-fit: contain;">
+                </div>
+                {% else %}
+                <i class="bi {{ cat_data.icon }} fs-3 text-primary mb-2 d-block"></i>
+                {% endif %}
+                <h6 class="card-title fw-bold mb-0" style="font-size: 0.85rem;">{{ cat_data.name }}</h6>
+                {% if scored_count > 0 %}
+                <small class="text-body-secondary" style="font-size: 0.75rem;">{{ scored_count }} ranked</small>
+                {% else %}
+                <small class="text-body-secondary" style="font-size: 0.75rem;">{{ cat_products.size }} product{% if cat_products.size != 1 %}s{% endif %}</small>
+                {% endif %}
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

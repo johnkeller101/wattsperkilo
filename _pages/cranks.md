@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: ranking
 title: Cranks
 category: cranks
 permalink: /cranks/

@@ -1,0 +1,32 @@
+dimensions:
+  shifting: "Shift Quality"
+  weight: "Weight"
+  durability: "Durability"
+  noise: "Noise Level"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      shifting: 30
+      weight: 20
+      durability: 25
+      noise: 10
+      value: 15
+  racing:
+    label: "Racing"
+    weights:
+      shifting: 25
+      weight: 35
+      durability: 10
+      noise: 10
+      value: 20
+  training:
+    label: "Training"
+    weights:
+      shifting: 20
+      weight: 10
+      durability: 40
+      noise: 15
+      value: 15

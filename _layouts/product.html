@@ -1,0 +1,261 @@
+---
+layout: default
+---
+{% assign cat_data = site.data.categories[page.category] %}
+{% assign scoring = site.data.scoring[page.category] %}
+{% assign has_outline = false %}
+{% if page.outline and page.outline != "" %}{% assign has_outline = true %}{% endif %}
+{% assign has_image = false %}
+{% if page.image and page.image != "" %}{% assign has_image = true %}{% endif %}
+{% assign has_visual = false %}
+{% if has_outline or has_image %}{% assign has_visual = true %}{% endif %}
+{% assign has_score = false %}
+{% if page.overall_score and page.overall_score > 0 %}{% assign has_score = true %}{% endif %}
+
+<article class="product-page">
+
+    <!-- ============ VERDICT HERO ============ -->
+    <section class="bg-body-tertiary py-4 py-md-5 mb-0">
+        <div class="container">
+            <div class="col-lg-10 mx-auto">
+                <div class="row g-4 align-items-center">
+                    <!-- SVG / Image -->
+                    <div class="col-md-5 col-lg-5">
+                        {% if has_outline %}
+                        {% assign color_index = page.title | size | modulo: 6 | plus: 1 %}
+                        <div class="outline-container outline-bg-{{ color_index }} rounded-3 p-3 p-md-4" style="min-height: 200px;">
+                            <img class="img-fluid" src="{{ site.baseurl }}/{{ page.outline }}" alt="{{ page.title }}" style="max-height: 300px;">
+                        </div>
+                        {% elsif has_image %}
+                        <img class="img-fluid rounded-3 w-100" src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+                        {% else %}
+                        <div class="outline-container rounded-3 p-3 p-md-4 d-flex align-items-center justify-content-center" style="min-height: 200px;">
+                            {% include outline-placeholder.html %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Verdict info -->
+                    <div class="col-md-7 col-lg-7">
+                        <h1 class="fw-bold mb-2" style="font-size: clamp(1.5rem, 4vw, 2.25rem);">{{ page.title }}</h1>
+
+                        <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+                            {% if has_score %}
+                            {% include score-ring.html score=page.overall_score size="md" %}
+                            {% endif %}
+                            <div>
+                                {% if page.status == "tested" %}
+                                <span class="tested-badge-sm ms-1" title="Tested">
+                                    <i class="bi bi-patch-check-fill text-primary"></i>
+                                    <small class="text-primary fw-semibold">Tested</small>
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Meta -->
+                        <div class="text-body-secondary small mb-3">
+                            {% if page.status == "tested" %}
+                                {% if page.tested_miles %}Tested over {{ page.tested_miles }} miles{% endif %}
+                                {% if page.date_tested %} · {{ page.date_tested | date: '%B %Y' }}{% endif %}
+                            {% elsif page.status == "aggregated" %}
+                                <i class="bi bi-collection me-1"></i>Scores based on aggregated reviews
+                            {% elsif page.status == "specs-only" %}
+                                <i class="bi bi-file-earmark-text me-1"></i>Specifications only
+                            {% endif %}
+                            {% if page.last_updated %} · Updated {{ page.last_updated | date: '%B %-d, %Y' }}{% endif %}
+                        </div>
+
+                        <!-- Summary -->
+                        {% if page.summary %}
+                        <p class="mb-3">{{ page.summary }}</p>
+                        {% endif %}
+
+                        <!-- Best for tags -->
+                        {% if page.best_for and page.best_for.size > 0 %}
+                        <div class="mb-3">
+                            {% include best-for-tags.html tags=page.best_for %}
+                        </div>
+                        {% endif %}
+
+                        <!-- Compact pros/cons -->
+                        {% if page.pros or page.cons %}
+                        {% include pros-cons.html compact=true %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% assign has_editorial = false %}
+    {% if page.status == "tested" and content != "" %}{% assign has_editorial = true %}{% endif %}
+    {% assign has_sources = false %}
+    {% if page.status == "aggregated" %}{% assign has_sources = true %}{% endif %}
+
+    <!-- ============ SCROLLSPY NAV + BREADCRUMB ============ -->
+    <nav class="scrollspy-nav" id="productNav">
+        <div class="container">
+            <div class="col-lg-10 mx-auto d-flex align-items-center justify-content-between">
+                {% include breadcrumb.html %}
+                <ul class="nav nav-underline mb-0 flex-nowrap" id="productScrollspy">
+                    {% if has_score %}
+                    <li class="nav-item"><a class="nav-link" href="#section-scores">Scores</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="#section-specs">Specs</a></li>
+                    {% if has_editorial %}
+                    <li class="nav-item"><a class="nav-link" href="#section-review">Review</a></li>
+                    {% endif %}
+                    {% if has_sources %}
+                    <li class="nav-item"><a class="nav-link" href="#section-sources">Sources</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ CONTENT SECTIONS ============ -->
+    <div class="container py-4">
+        <div class="col-lg-10 mx-auto">
+
+            <!-- Scores -->
+            {% if has_score %}
+            <section id="section-scores" class="mb-5 fade-up">
+                {% include score-card.html %}
+            </section>
+            {% endif %}
+
+            <!-- Specs -->
+            <section id="section-specs" class="mb-5 fade-up">
+                {% include specs-table.html %}
+            </section>
+
+            <!-- Detailed pros/cons (full version) -->
+            {% if page.pros or page.cons %}
+            <section class="mb-5 fade-up">
+                {% include pros-cons.html %}
+            </section>
+            {% endif %}
+
+            <!-- Editorial content -->
+            {% if has_editorial %}
+            <section id="section-review" class="mb-5 fade-up">
+                <h3 class="pb-2 mb-4 border-bottom">Review</h3>
+                <div class="article-content">
+                    {{ content }}
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Sources -->
+            {% if has_sources %}
+            <section id="section-sources" class="mb-5 fade-up">
+                {% include sources-list.html %}
+            </section>
+            {% endif %}
+
+            <!-- Inline comparison -->
+            {% assign same_category = site.products | where: "category", page.category | sort: "overall_score" | reverse %}
+            {% assign compare_targets = "" | split: "" %}
+            {% for p in same_category %}
+                {% if p.url != page.url and p.overall_score and p.overall_score > 0 %}
+                    {% assign compare_targets = compare_targets | push: p %}
+                {% endif %}
+            {% endfor %}
+
+            {% if compare_targets.size > 0 and has_score %}
+            {% assign compare_vs = compare_targets | first %}
+            <section id="section-compare" class="mb-5 fade-up">
+                <h3 class="pb-2 mb-4 border-bottom">How does this compare?</h3>
+                <div class="d-flex align-items-center justify-content-center gap-4 mb-3">
+                    <!-- Current product -->
+                    <div class="text-center">
+                        <div class="outline-container rounded mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 100px; height: 75px;">
+                            {% if page.outline and page.outline != "" %}
+                            <img src="{{ site.baseurl }}/{{ page.outline }}" alt="{{ page.title }}" style="max-height: 65px; max-width: 90px; object-fit: contain;">
+                            {% elsif page.image and page.image != "" %}
+                            <img src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}" style="max-height: 65px; max-width: 90px; object-fit: cover; border-radius: 4px;">
+                            {% else %}
+                            {% include outline-placeholder.html %}
+                            {% endif %}
+                        </div>
+                        <div class="fw-bold small">{{ page.title }}</div>
+                        {% include score-ring.html score=page.overall_score size="sm" %}
+                    </div>
+                    <!-- VS -->
+                    <span class="text-body-secondary fw-bold fs-5">vs</span>
+                    <!-- Comparison target -->
+                    <div class="text-center">
+                        <div class="outline-container rounded mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 100px; height: 75px;">
+                            {% if compare_vs.outline and compare_vs.outline != "" %}
+                            <img src="{{ site.baseurl }}/{{ compare_vs.outline }}" alt="{{ compare_vs.title }}" style="max-height: 65px; max-width: 90px; object-fit: contain;">
+                            {% elsif compare_vs.image and compare_vs.image != "" %}
+                            <img src="{% if compare_vs.image contains '://' %}{{ compare_vs.image }}{% else %}{{ site.baseurl }}/{{ compare_vs.image }}{% endif %}" alt="{{ compare_vs.title }}" style="max-height: 65px; max-width: 90px; object-fit: cover; border-radius: 4px;">
+                            {% else %}
+                            {% include outline-placeholder.html %}
+                            {% endif %}
+                        </div>
+                        <div class="fw-bold small">{{ compare_vs.title }}</div>
+                        {% if compare_vs.overall_score and compare_vs.overall_score > 0 %}
+                        {% include score-ring.html score=compare_vs.overall_score size="sm" %}
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Score breakdowns — winner indicators -->
+                {% if page.scores and compare_vs.scores %}
+                <div class="my-4">
+                    <div class="row g-2">
+                    {% for dim in page.scores %}
+                    {% assign dk = dim[0] %}
+                    {% assign sa = dim[1] | times: 1.0 %}
+                    {% assign sb = compare_vs.scores[dk] | times: 1.0 %}
+                    {% if sa > 0 or sb > 0 %}
+                    <div class="col-6 col-md-4">
+                        <div class="d-flex align-items-center gap-2 small py-1">
+                            {% if sa > sb %}
+                            <i class="bi bi-arrow-left-circle-fill text-success"></i>
+                            {% elsif sb > sa %}
+                            <i class="bi bi-arrow-right-circle-fill text-danger"></i>
+                            {% else %}
+                            <i class="bi bi-dash-circle text-body-secondary"></i>
+                            {% endif %}
+                            <span class="text-body-secondary">{{ dk | replace: "_", " " | capitalize }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="text-center">
+                    <a href="{{ site.baseurl }}/compare/?cat={{ page.category }}&a={{ page.slug }}&b={{ compare_vs.slug }}" class="btn btn-sm btn-outline-primary">
+                        View detailed comparison &rarr;
+                    </a>
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Buy links -->
+            <section class="mb-5 fade-up">
+                <h3 class="pb-2 mb-4 border-bottom">Where to Buy</h3>
+                <div class="d-flex flex-wrap gap-2">
+                    {% include buy-links.html %}
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Sticky buy bar (desktop only) -->
+    <div class="buy-bar d-none d-lg-block">
+        <div class="container">
+            <div class="col-lg-10 mx-auto d-flex align-items-center justify-content-between">
+                <span class="fw-semibold">{{ page.title }}</span>
+                <div class="d-flex gap-2">
+                    {% include buy-links.html size="sm" %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</article>

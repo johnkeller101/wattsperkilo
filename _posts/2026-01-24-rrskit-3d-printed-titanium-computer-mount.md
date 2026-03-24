@@ -6,6 +6,7 @@ categories: [ accessories, reviews ]
 outline: assets/images/outlines/rrskit-mount.svg
 summary: "A $30 3D-printed titanium computer mount that's a clone of the Scott Addict RC mount. Rock solid with a Wahoo and Cycliq mounted, but needs some tweaking out of the box."
 date: 2026-01-24
+last_modified_at: 2026-03-24
 ---
 
 I have four of these mounts. They're a clone of the [Syncros iC SL INSPIR3D](https://www.syncros.com/us/en/product/syncros-ic-sl-inspir3d-front-comp-mount) computer mount that Scott made for the Addict RC, but with an added GoPro adapter underneath. At $30-40 on AliExpress when on sale, they're a fraction of the cost of the Syncros original.
@@ -35,7 +36,7 @@ Make sure you get the hollow version that looks like the Syncros mount. RRSKIT a
 
 The hollow version is the only mount I have found that does not flex with a Wahoo Roam V2 and a Cycliq Fly12 Sport mounted underneath. I've tried other similar mounts, including solid metal ones, and they all had some amount of flex on rough roads. This one is rock solid. Build quality has been great across all four of mine.
 
-I've used these on the [Avian Canary](/avian-canary-handlebars-first-ride-impressions/), [Avian Parus](/avian-parus-handlebar-review/), and a Scott Addict RC Pro with the stock Syncros bars without any issues once set up properly. On the Scott it worked with plastic spacers to get the angle right, which makes sense given it's a clone of the Scott mount.
+I've used these on the [Avian Canary](/products/handlebars/avian-canary/), [Avian Parus](/products/handlebars/avian-parus/), and a Scott Addict RC Pro with the stock Syncros bars without any issues once set up properly. On the Scott it worked with plastic spacers to get the angle right, which makes sense given it's a clone of the Scott mount.
 
 ### Wahoo Compatibility
 

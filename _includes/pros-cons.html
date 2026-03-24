@@ -1,0 +1,55 @@
+{% comment %}
+  Pros/Cons component
+  Usage: {% include pros-cons.html pros=page.pros cons=page.cons compact=true %}
+{% endcomment %}
+{% assign pros = include.pros | default: page.pros %}
+{% assign cons = include.cons | default: page.cons %}
+{% if pros or cons %}
+
+{% if include.compact %}
+<div class="pros-cons-compact">
+    {% if pros %}
+    {% for pro in pros %}
+    <div class="pro-item small mb-1">{{ pro }}</div>
+    {% endfor %}
+    {% endif %}
+    {% if cons %}
+    {% for con in cons %}
+    <div class="con-item small mb-1">{{ con }}</div>
+    {% endfor %}
+    {% endif %}
+</div>
+{% else %}
+<div class="row g-3 my-3">
+    {% if pros %}
+    <div class="col-md-6">
+        <div class="card no-hover border-success h-100">
+            <div class="card-body">
+                <h6 class="card-title text-success fw-semibold"><i class="bi bi-check-circle me-1"></i>Pros</h6>
+                <ul class="list-unstyled mb-0">
+                    {% for pro in pros %}
+                    <li class="mb-1"><small>{{ pro }}</small></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if cons %}
+    <div class="col-md-6">
+        <div class="card no-hover border-danger h-100">
+            <div class="card-body">
+                <h6 class="card-title text-danger fw-semibold"><i class="bi bi-x-circle me-1"></i>Cons</h6>
+                <ul class="list-unstyled mb-0">
+                    {% for con in cons %}
+                    <li class="mb-1"><small>{{ con }}</small></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+
+{% endif %}

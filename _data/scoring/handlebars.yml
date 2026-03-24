@@ -1,0 +1,32 @@
+dimensions:
+  stiffness: "Stiffness"
+  comfort: "Comfort"
+  weight: "Weight"
+  aerodynamics: "Aerodynamics"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      stiffness: 25
+      comfort: 25
+      weight: 20
+      aerodynamics: 15
+      value: 15
+  racing:
+    label: "Racing"
+    weights:
+      stiffness: 30
+      comfort: 10
+      weight: 25
+      aerodynamics: 25
+      value: 10
+  endurance:
+    label: "Endurance"
+    weights:
+      stiffness: 15
+      comfort: 35
+      weight: 15
+      aerodynamics: 15
+      value: 20

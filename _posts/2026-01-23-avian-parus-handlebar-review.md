@@ -6,10 +6,10 @@ categories: [ handlebars, reviews ]
 outline: assets/images/outlines/avian-parus.svg
 summary: "Avian's lighter option at ~220g with T1100/graphene construction. A step up in weight savings from the Canary, with a stiffer feel. This review covers the original Parus, which has since been replaced by the Parus II."
 date: 2026-01-23
-last_modified_at: 2026-03-06
+last_modified_at: 2026-03-24
 ---
 
-After spending time on the [Canary](/avian-canary-handlebars-first-ride-impressions/), I decided to try Avian's lighter option, the Parus. Avian doesn't make this one anymore. They replaced it with the Parus II, which runs $450 now. The original was $400 when I bought it. It's a separate model from the Canary, not a revision, and it dropped to around 220g using T1100 carbon and graphene with integrated molding instead of bonding. Weight varied by size, with 7g of that being stem bolts. For $400, that put it among the lightest integrated bars you could buy without spending Darimo money.
+After spending time on the [Canary](/products/handlebars/avian-canary/), I decided to try Avian's lighter option, the Parus. Avian doesn't make this one anymore. They replaced it with the Parus II, which runs $450 now. The original was $400 when I bought it. It's a separate model from the Canary, not a revision, and it dropped to around 220g using T1100 carbon and graphene with integrated molding instead of bonding. Weight varied by size, with 7g of that being stem bolts. For $400, that put it among the lightest integrated bars you could buy without spending Darimo money.
 
 ### Overview
 

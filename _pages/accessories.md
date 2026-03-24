@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: ranking
 title: Accessories
 category: accessories
 permalink: /accessories/

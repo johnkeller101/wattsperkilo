@@ -1,0 +1,16 @@
+dimensions:
+  function: "Function"
+  weight: "Weight"
+  finish: "Finish Quality"
+  durability: "Durability"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      function: 30
+      weight: 20
+      finish: 15
+      durability: 20
+      value: 15

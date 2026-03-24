@@ -1,0 +1,225 @@
+---
+layout: default
+---
+{% assign cat_data = site.data.categories[page.category] %}
+{% assign scoring = site.data.scoring[page.category] %}
+{% assign products = site.products | where: "category", page.category | sort: "overall_score" | reverse %}
+{% assign scored_products = "" | split: "" %}
+{% assign unscored_products = "" | split: "" %}
+{% for p in products %}
+    {% if p.product_type == "component" %}{% continue %}{% endif %}
+    {% if p.overall_score and p.overall_score > 0 %}
+        {% assign scored_products = scored_products | push: p %}
+    {% else %}
+        {% assign unscored_products = unscored_products | push: p %}
+    {% endif %}
+{% endfor %}
+{% assign all_products = scored_products | concat: unscored_products %}
+
+<div class="container">
+    <!-- Page Header -->
+    <header class="py-4 mb-3">
+        <div class="d-flex align-items-center gap-3 mb-2">
+            {% if cat_data.icon %}
+            <i class="bi {{ cat_data.icon }} fs-2 text-primary"></i>
+            {% endif %}
+            <div>
+                <h1 class="fw-bold mb-0">{{ page.title }}</h1>
+                {% if page.description %}
+                <p class="text-body-secondary mb-0">{{ page.description }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <small class="text-body-secondary">{{ all_products.size }} product{% if all_products.size != 1 %}s{% endif %} ranked</small>
+    </header>
+
+    <!-- Quick Answer (#1 pick) -->
+    {% if scored_products.size > 0 %}
+    {% assign top_product = scored_products | first %}
+    {% include quick-answer.html product=top_product %}
+    {% endif %}
+
+    <!-- Sort & Filter Controls (sticky) — hidden when ≤1 scored product -->
+    {% if scored_products.size > 1 %}
+    <div class="sticky-sort-bar mb-3" id="rankingControls">
+        <div class="container px-0">
+            <!-- Desktop controls -->
+            <div class="d-none d-md-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div>
+                    <span class="text-body-secondary small me-2">Sort:</span>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-outline-primary ranking-sort-btn active" data-sort="overall">
+                            Overall <i class="bi bi-arrow-down sort-arrow"></i>
+                        </button>
+                        {% if scoring.dimensions %}
+                        {% for dim in scoring.dimensions %}
+                        <button type="button" class="btn btn-outline-primary ranking-sort-btn" data-sort="dim" data-dim="{{ dim[0] }}">
+                            {{ dim[1] }} <i class="bi bi-arrow-down sort-arrow"></i>
+                        </button>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <span class="text-body-secondary small me-2">Filter:</span>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-outline-secondary ranking-filter-btn active" data-filter="all">All</button>
+                        <button type="button" class="btn btn-outline-secondary ranking-filter-btn" data-filter="tested">Tested Only</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile: single button → offcanvas -->
+            <div class="d-md-none">
+                <button class="btn btn-outline-secondary btn-sm w-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#sortFilterOffcanvas">
+                    <i class="bi bi-sliders me-1"></i> Sort & Filter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sort/Filter Offcanvas -->
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="sortFilterOffcanvas" style="height: auto; max-height: 70vh;">
+        <div class="offcanvas-header">
+            <h6 class="offcanvas-title fw-bold">Sort & Filter</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p class="text-body-secondary small mb-2 fw-semibold">Sort by</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <button type="button" class="btn btn-sm btn-outline-primary ranking-sort-btn active" data-sort="overall">
+                    Overall <i class="bi bi-arrow-down sort-arrow"></i>
+                </button>
+                {% if scoring.dimensions %}
+                {% for dim in scoring.dimensions %}
+                <button type="button" class="btn btn-sm btn-outline-primary ranking-sort-btn" data-sort="dim" data-dim="{{ dim[0] }}">
+                    {{ dim[1] }} <i class="bi bi-arrow-down sort-arrow"></i>
+                </button>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <p class="text-body-secondary small mb-2 fw-semibold">Filter</p>
+            <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary ranking-filter-btn active" data-filter="all">All</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary ranking-filter-btn" data-filter="tested">Tested Only</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Product Ranking List -->
+    <div id="rankingList">
+        {% assign rank = 0 %}
+        {% for product in all_products %}
+        {% assign rank = rank | plus: 1 %}
+        <div class="product-row card mb-2 product-card-rank {% if rank == 1 %}rank-1{% elsif rank == 2 %}rank-2{% elsif rank == 3 %}rank-3{% endif %}"
+             data-overall="{{ product.overall_score }}"
+             data-weight="{{ product.specs.weight_measured | default: 9999 }}"
+             data-price="{{ product.specs.price | default: 9999 }}"
+             {% for dim in scoring.dimensions %}
+             {% assign dim_key = dim[0] %}
+             data-dim-{{ dim_key }}="{{ product.scores[dim_key] | default: 0 }}"
+             {% endfor %}
+             data-status="{{ product.status }}"
+            >
+            <div class="card-body py-3">
+                <div class="row align-items-center">
+                    <!-- Rank -->
+                    <div class="col-auto pe-0">
+                        <span class="rank-number fw-bold text-body-secondary" style="font-size: 1.1rem;">#<span class="rank-display">{{ rank }}</span></span>
+                    </div>
+
+                    <!-- SVG outline — always visible -->
+                    {% if product.outline and product.outline != "" %}
+                    <div class="col-auto px-2">
+                        {% assign color_index = product.title | size | modulo: 6 | plus: 1 %}
+                        <div class="outline-container outline-bg-{{ color_index }} rounded" style="width: 64px; height: 48px;">
+                            <img src="{{ site.baseurl }}/{{ product.outline }}" alt="{{ product.title }}" style="max-height: 40px; max-width: 56px; object-fit: contain;">
+                        </div>
+                    </div>
+                    {% elsif product.image and product.image != "" %}
+                    <div class="col-auto px-2">
+                        <img src="{% if product.image contains '://' %}{{ product.image }}{% else %}{{ site.baseurl }}/{{ product.image }}{% endif %}" alt="{{ product.title }}" class="rounded" style="width: 64px; height: 48px; object-fit: cover;">
+                    </div>
+                    {% else %}
+                    <div class="col-auto px-2">
+                        <div class="outline-container rounded d-flex align-items-center justify-content-center" style="width: 64px; height: 48px;">
+                            {% include outline-placeholder.html %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Product info -->
+                    <div class="col">
+                        <div class="d-flex align-items-center flex-wrap gap-1 mb-0">
+                            <h6 class="mb-0 fw-bold">
+                                <a href="{{ site.baseurl }}{{ product.url }}" class="text-decoration-none text-body" onclick="event.stopPropagation()">{{ product.title }}</a>
+                            </h6>
+                            {% if product.status == "tested" %}
+                            <span class="tested-badge-sm"><i class="bi bi-patch-check-fill text-primary"></i></span>
+                            {% endif %}
+                        </div>
+                        <div class="text-body-secondary small">{% assign spec_sep = "" %}{% if product.specs.weight_measured %}{{ product.specs.weight_measured }}g{% assign spec_sep = " · " %}{% endif %}{% if product.specs.weight_claimed and product.specs.weight_measured == nil %}~{{ product.specs.weight_claimed }}g{% assign spec_sep = " · " %}{% endif %}{% if product.specs.price %}{{ spec_sep }}${{ product.specs.price }}{% assign spec_sep = " · " %}{% endif %}{% if product.specs.material %}{{ spec_sep }}{{ product.specs.material }}{% endif %}</div>
+                        {% if product.best_for and product.best_for.size > 0 %}
+                        <div class="mt-1 d-none d-md-block">{% include best-for-tags.html tags=product.best_for %}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Score ring + chevron -->
+                    <div class="col-auto text-center d-flex align-items-center gap-2">
+                        {% if product.overall_score and product.overall_score > 0 %}
+                        <div class="computed-score-container">
+                            {% include score-ring.html score=product.overall_score size="sm" %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="ranking-detail px-3 pb-3 pt-0">
+                    <div class="row g-3">
+                        <!-- Score bars -->
+                        {% if scoring and product.scores %}
+                        <div class="col-md-6">
+                            {% for dim in scoring.dimensions %}
+                                {% assign dim_key = dim[0] %}
+                                {% assign dim_label = dim[1] %}
+                                {% assign dim_score = product.scores[dim_key] %}
+                                {% if dim_score and dim_score > 0 %}
+                                {% include score-bar.html label=dim_label score=dim_score %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <!-- Summary + pros/cons -->
+                        <div class="{% if scoring and product.scores %}col-md-6{% else %}col-12{% endif %}">
+                            {% if product.summary %}
+                            <p class="text-body-secondary small mb-2">{{ product.summary }}</p>
+                            {% endif %}
+                            {% if product.pros %}
+                            <div class="mb-1">
+                                {% for pro in product.pros limit: 3 %}
+                                <div class="small"><span style="color: var(--wpk-score-excellent);">&#10003;</span> {{ pro }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            {% if product.cons %}
+                            <div class="mb-2">
+                                {% for con in product.cons limit: 2 %}
+                                <div class="small"><span style="color: var(--wpk-score-poor);">&#10007;</span> {{ con }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <a href="{{ site.baseurl }}{{ product.url }}" class="btn btn-sm btn-outline-primary mt-1">View full review &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if all_products.size == 0 %}
+    <p class="text-center text-body-secondary py-5">No products in this category yet.</p>
+    {% endif %}
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/ranking.js"></script>

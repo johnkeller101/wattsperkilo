@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: ranking
 title: Wheels
 category: wheels
 permalink: /wheels/

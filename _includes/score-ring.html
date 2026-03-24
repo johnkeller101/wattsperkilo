@@ -1,0 +1,47 @@
+{% comment %}
+  Score ring component — circular SVG progress indicator
+  Usage: {% include score-ring.html score=8.0 size="sm" %}
+  Sizes: sm (40px), md (80px), lg (120px)
+{% endcomment %}
+{% assign ring_score = include.score | times: 1.0 %}
+{% assign ring_size = include.size | default: "sm" %}
+
+{% if ring_size == "sm" %}
+  {% assign ring_r = 15 %}
+  {% assign ring_sw = 4 %}
+  {% assign ring_vb = 36 %}
+{% elsif ring_size == "md" %}
+  {% assign ring_r = 30 %}
+  {% assign ring_sw = 6 %}
+  {% assign ring_vb = 72 %}
+{% else %}
+  {% assign ring_r = 46 %}
+  {% assign ring_sw = 8 %}
+  {% assign ring_vb = 108 %}
+{% endif %}
+
+{% assign ring_cx = ring_vb | divided_by: 2 %}
+{% assign ring_circumference = ring_r | times: 6.2832 %}
+{% assign ring_pct = ring_score | divided_by: 10.0 %}
+{% assign ring_offset = ring_circumference | times: ring_pct %}
+{% assign ring_dash_offset = ring_circumference | minus: ring_offset %}
+
+{% if ring_score >= 8.0 %}
+  {% assign ring_color = "var(--wpk-score-excellent)" %}
+{% elsif ring_score >= 7.0 %}
+  {% assign ring_color = "var(--wpk-score-good)" %}
+{% elsif ring_score >= 5.0 %}
+  {% assign ring_color = "var(--wpk-score-average)" %}
+{% elsif ring_score >= 3.0 %}
+  {% assign ring_color = "var(--wpk-score-below)" %}
+{% else %}
+  {% assign ring_color = "var(--wpk-score-poor)" %}
+{% endif %}
+
+<div class="score-ring score-ring-{{ ring_size }} animate-on-scroll" data-score="{{ ring_score }}">
+    <svg viewBox="0 0 {{ ring_vb }} {{ ring_vb }}" width="100%" height="100%">
+        <circle class="score-ring-bg" cx="{{ ring_cx }}" cy="{{ ring_cx }}" r="{{ ring_r }}" stroke-width="{{ ring_sw }}" />
+        <circle class="score-ring-fill" cx="{{ ring_cx }}" cy="{{ ring_cx }}" r="{{ ring_r }}" stroke-width="{{ ring_sw }}" stroke="{{ ring_color }}" stroke-dasharray="{{ ring_circumference }}" stroke-dashoffset="{{ ring_circumference }}" data-target-offset="{{ ring_dash_offset }}" />
+    </svg>
+    <span class="score-ring-text" style="color: {{ ring_color }}">{{ ring_score }}</span>
+</div>

@@ -1,0 +1,24 @@
+dimensions:
+  comfort: "Comfort"
+  weight: "Weight"
+  support: "Support"
+  finish: "Finish Quality"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      comfort: 30
+      weight: 20
+      support: 25
+      finish: 10
+      value: 15
+  racing:
+    label: "Racing"
+    weights:
+      comfort: 20
+      weight: 30
+      support: 25
+      finish: 10
+      value: 15

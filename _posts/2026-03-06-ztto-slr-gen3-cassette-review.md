@@ -7,6 +7,7 @@ image: assets/images/ztto-gen3.jpg
 outline: assets/images/outlines/ztto-gen-3.svg
 summary: "An ultralight 12-speed cassette at ~135g and ~$90. Shifts well and saves serious weight, but every one I've owned developed an unfixable creak within a few hundred miles. I've gone back to Dura-Ace."
 date: 2026-03-06
+last_modified_at: 2026-03-24
 ---
 
 The ZTTO SLR Gen3 is a ridiculously light 12-speed road cassette, around 135g for the 11-30T, at a fraction of what Shimano or SRAM charge for their top-tier options. It shifts well, it's compatible with standard Shimano HG freehubs, and it looks great. I've been through four of them. They all eventually start creaking.
@@ -61,7 +62,7 @@ I'd be careful with the 11-34T and 11-36T versions. [Trace Velo covered a failur
 
 I've put all my bikes back on the Dura-Ace R9200 11-34T. The ZTTO shifts well and the weight is wild for the price, but the creaking starts within a couple hundred miles and nothing permanently fixes it. The aluminum cogs wear faster than steel too, so you're buying a cassette that gets annoying and wears out.
 
-If you're chasing every gram for a race day and don't care about longevity, go for it. For anything else, spend the extra money on Dura-Ace. If you're shopping lightweight cassettes in general, check out my [Sixwheel cassette review](/sixwheel-cassette-review/) too, though that one didn't work out either.
+If you're chasing every gram for a race day and don't care about longevity, go for it. For anything else, spend the extra money on Dura-Ace. If you're shopping lightweight cassettes in general, check out my [Sixwheel cassette review](/products/cassettes/sixwheel-12s/) too, though that one didn't work out either.
 
 <span style="margin:auto; display:table;">
 <a target="_blank" href="https://www.aliexpress.us/w/wholesale-ztto-slr-gen3-12-speed.html" class="btn btn-outline-success btn-lg btn-round ml-1">View on AliExpress</a>

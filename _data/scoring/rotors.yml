@@ -1,0 +1,24 @@
+dimensions:
+  braking: "Braking Power"
+  weight: "Weight"
+  noise: "Noise Level"
+  durability: "Durability"
+  value: "Value"
+
+profiles:
+  overall:
+    label: "Overall"
+    weights:
+      braking: 30
+      weight: 20
+      noise: 15
+      durability: 20
+      value: 15
+  racing:
+    label: "Racing"
+    weights:
+      braking: 25
+      weight: 35
+      noise: 10
+      durability: 15
+      value: 15
