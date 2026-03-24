@@ -30,12 +30,10 @@ var idx = lunr(function () {
 function lunr_search(term) {
     if (!term) return false;
 
-    var searchModal = new bootstrap.Modal(document.getElementById('searchModal'));
-    var resultsList = document.getElementById('searchResultsList');
-    var modalTitle = document.getElementById('searchModalLabel');
+    var resultsContainer = document.getElementById('searchResults');
+    if (!resultsContainer) return false;
 
-    modalTitle.textContent = "Search results for '" + term + "'";
-    resultsList.innerHTML = '';
+    resultsContainer.innerHTML = '';
 
     var results = idx.search(term);
 
@@ -46,19 +44,17 @@ function lunr_search(term) {
             var title = documents[ref].title;
             var body = documents[ref].body.substring(0, 160) + '...';
 
-            var li = document.createElement('li');
-            li.className = 'list-group-item';
-            li.innerHTML = '<a href="' + url + '" class="text-decoration-none">' +
-                '<div class="fw-semibold">' + title + '</div>' +
-                '<small class="text-body-secondary">' + body + '</small>' +
-                '</a>';
-            resultsList.appendChild(li);
+            var a = document.createElement('a');
+            a.href = url;
+            a.innerHTML = '<div class="result-title">' + title + '</div>' +
+                '<div class="result-preview">' + body + '</div>';
+            resultsContainer.appendChild(a);
         });
     } else {
-        resultsList.innerHTML = '<li class="list-group-item text-body-secondary">No results found. Try a different search term.</li>';
+        resultsContainer.innerHTML = '<p style="color: var(--gray-text);">No results found.</p>';
     }
 
-    searchModal.show();
+    resultsContainer.style.display = 'block';
     return false;
 }
 </script>

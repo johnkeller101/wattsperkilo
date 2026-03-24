@@ -4,115 +4,53 @@ layout: default
 {% assign author = site.authors[page.author] %}
 
 <article>
-    <!-- Post Header -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <!-- Categories -->
-                <div class="mb-2">
-                    {% for category in page.categories %}
-                    <a href="{{site.baseurl}}/{{ category | downcase | replace: ' ', '-' }}/" class="badge bg-primary text-decoration-none me-1">{{ category | capitalize }}</a>
-                    {% endfor %}
-                </div>
- 
-                <!-- Title -->
-                <h1 class="display-5 fw-bold mb-3">{{ page.title }}</h1>
+    <div id="article">
+        <h1 class="title">{{ page.title }}</h1>
 
-                <!-- Meta -->
-                <div class="d-flex align-items-center mb-4">
-                    {% if author.avatar %}
-                    <img class="rounded-circle me-3" src="{{site.baseurl}}/{{author.avatar}}" alt="{{author.name}}" width="50" height="50">
-                    {% endif %}
-                    <div>
-                        <span class="fw-semibold">John Keller</span>
-                        <div class="text-body-secondary small">
-                            {% if page.last_modified_at %}
-                            Updated {{ page.last_modified_at | date: '%B %-d, %Y' }} · First published {{ page.date | date: '%B %-d, %Y' }}
-                            {% else %}
-                            {{ page.date | date: '%B %-d, %Y' }}
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="metadata">
+            {% if page.last_modified_at %}
+            Updated {{ page.last_modified_at | date: '%B %-d, %Y' }} · First published {{ page.date | date: '%B %-d, %Y' }}
+            {% else %}
+            {{ page.date | date: '%B %-d, %Y' }}
+            {% endif %}
+            {% if page.categories.size > 0 %}
+            · {% for category in page.categories %}<a class="category-link" href="{{site.baseurl}}/{{ category | downcase | replace: ' ', '-' }}/">{{ category | capitalize }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+            {% endif %}
         </div>
 
-        <!-- Featured Image (outline preferred over image) -->
         {% if page.outline or page.image %}
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="featured-image-container">
-                    {% if page.outline %}
-                    <img class="img-fluid w-100 outline-image" src="{{ site.baseurl }}/{{ page.outline }}" alt="{{ page.title }}">
-                    {% else %}
-                    <img class="img-fluid rounded w-100" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-                    {% endif %}
-                </div>
+        <div class="featured-image-container">
+            {% if page.outline %}
+            {% assign color_index = page.title | size | modulo: 6 | plus: 1 %}
+            <img class="outline-image outline-tint-{{ color_index }}" src="{{ site.baseurl }}/{{ page.outline }}" alt="{{ page.title }}">
+            {% else %}
+            <img src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="article-content">
+            {{ content }}
+        </div>
+
+        {% if page.author %}
+        <div class="author-box">
+            {% if author.avatar %}
+            <img src="{{site.baseurl}}/{{author.avatar}}" alt="{{author.name}}">
+            {% endif %}
+            <div class="author-info">
+                <p class="author-name">Written by {{ author.name }}</p>
+                <p class="author-bio">{{ author.bio }}</p>
             </div>
         </div>
         {% endif %}
-    </div>
 
-    <!-- Post Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <div class="article-content">
-                    {{ content }}
-                </div>
-
-                <!-- Mailchimp Subscribe Form -->
-                {% if site.mailchimp-list %}
-                <div class="card bg-light my-4">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <h5 class="fw-bold mb-1">Join Newsletter</h5>
-                                <p class="mb-0 text-body-secondary">Get the latest news right in your inbox. We never spam!</p>
-                            </div>
-                            <div class="col-md-6">
-                                <form action="{{site.mailchimp-list}}" method="post" target="_blank">
-                                    <div class="input-group">
-                                        <input type="email" name="EMAIL" class="form-control" placeholder="Enter email" required>
-                                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- Author Box -->
-                {% if page.author %}
-                <div class="card no-hover my-4">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            {% if author.avatar %}
-                            <img class="rounded-circle me-3" src="{{site.baseurl}}/{{author.avatar}}" alt="John Keller" width="80" height="80">
-                            {% endif %}
-                            <div class="flex-grow-1">
-                                <h5 class="fw-bold mb-1">Written by John Keller</h5>
-                                <p class="mb-0 text-body-secondary">{{ author.bio }}</p>
-                            </div>
-                            <a href="https://www.strava.com/athletes/johnkeller" target="_blank" class="text-decoration-none ms-3" title="Follow on Strava">
-                                <i class="bi bi-strava fs-2 text-warning"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- Comments -->
-                {% if page.comments != false %}
-                {% include comments.html %}
-                {% endif %}
-            </div>
-        </div>
+        {% if page.comments != false %}
+        {% include comments.html %}
+        {% endif %}
     </div>
 </article>
 
-<!-- Related Articles -->
 {% assign related_posts = "" | split: "" %}
 {% for category in page.categories %}
     {% for post in site.categories[category] %}
@@ -125,7 +63,6 @@ layout: default
 {% endfor %}
 {% assign related_posts = related_posts | slice: 0, 3 %}
 
-{% comment %} Fallback to recent posts if no category matches {% endcomment %}
 {% if related_posts.size == 0 %}
     {% assign related_posts = "" | split: "" %}
     {% for post in site.posts limit:4 %}
@@ -137,15 +74,30 @@ layout: default
 {% endif %}
 
 {% if related_posts.size > 0 %}
-<div class="container mt-5">
-    <h3 class="pb-3 mb-4 border-bottom">Related</h3>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="related-posts">
+    <h3>Related</h3>
+    <ul class="post-list">
         {% for post in related_posts %}
-        <div class="col">
-            {% include card.html %}
-        </div>
+        <li>
+            <a class="post-link" href="{{site.baseurl}}{{post.url}}">
+                <div class="meta">
+                    <h3 class="title">{{ post.title }}</h3>
+                    <p class="date">{{ post.date | date: '%B %-d, %Y' }}</p>
+                    <p class="description">{{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
+                </div>
+                {% if post.outline or post.image %}
+                {% assign color_index = post.title | size | modulo: 6 | plus: 1 %}
+                <div class="thumb">
+                    {% if post.outline %}
+                    <img class="outline-tint-{{ color_index }}" src="{{site.baseurl}}/{{ post.outline }}" alt="{{ post.title }}">
+                    {% else %}
+                    <img src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{site.baseurl}}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
+                    {% endif %}
+                </div>
+                {% endif %}
+            </a>
+        </li>
         {% endfor %}
-    </div>
+    </ul>
 </div>
 {% endif %}
-

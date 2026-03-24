@@ -8,77 +8,42 @@
     <meta name="description" content="{{ page.summary | strip_html | strip_newlines | truncate: 160 }}" data-pagefind-meta="description">
     <meta property="og:description" content="{{ page.summary | strip_html | strip_newlines | truncate: 200 }}">
     {% endif %}
+    {% unless page.image %}
+    <meta property="og:image" content="{{ site.baseurl }}/{{ site.logo }}">
+    {% endunless %}
 
     <link rel="shortcut icon" type="image/x-icon" href="{{site.baseurl}}/{{site.favicon}}">
-
-    <!-- Bootstrap 5 with Bootswatch Zephyr Theme -->
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/bootstrap.min.css">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/bootstrap-icons.min.css">
-
-    <!-- Minimal Custom Styles -->
     <link rel="stylesheet" href="{{site.baseurl}}/assets/css/theme.css">
 
     {% include tracking-header.html %}
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ site.baseurl }}/">
-                {{ site.name }}
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    {% include menu-header.html %}
-                </ul>
-                <div class="d-flex">
-                    {% include search-form.html %}
-                </div>
-            </div>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <h2><a href="{{ site.baseurl }}/">{{ site.name }}</a></h2>
+        </nav>
+    </header>
 
-    <!-- Search Results Modal -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="searchModalLabel">Search Results</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul id="searchResultsList" class="list-group list-group-flush"></ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Content -->
-    <main class="py-4">
+    <main>
         {{ content }}
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-body-tertiary border-top py-4 mt-auto">
-        <div class="container">
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
-                <p class="mb-0 text-body-secondary">
-                    <strong>{{ site.name }}</strong> &copy; <script>document.write(new Date().getFullYear())</script>
-                </p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="{{ site.baseurl }}/categories">Categories</a>
+                <a href="{{ site.baseurl }}/about">About</a>
+                <a href="{{ site.baseurl }}/privacy-policy">Privacy</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.strava.com/athletes/johnkeller" target="_blank" title="Strava">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="{{site.baseurl}}/assets/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Lunr Search -->
     <script src="{{site.baseurl}}/assets/js/lunr.js"></script>
     {% include search-script.html %}
     <script src="{{site.baseurl}}/assets/js/theme.js"></script>

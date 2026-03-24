@@ -1,7 +1,7 @@
 <!-- Cusdis Comments - Set your cusdis app_id in _config.yml -->
 {% if site.cusdis.app_id %}
-<div id="comments" class="mt-5">
-    <h5 class="fw-bold mb-3">Comments</h5>
+<div id="comments">
+    <h3>Comments</h3>
     <div id="cusdis_thread"
         data-host="https://cusdis.com"
         data-app-id="{{ site.cusdis.app_id }}"
@@ -10,6 +10,77 @@
         data-page-title="{{ page.title }}"
         data-theme="auto"
     ></div>
+    <script>
+    (function() {
+        var target = document.getElementById('cusdis_thread');
+        var originalAppendChild = target.appendChild.bind(target);
+
+        // Use @media queries instead of .dark class — works immediately without
+        // waiting for iframe.umd.js to toggle .dark via postMessage
+        var customCSS =
+            /* Light mode base */
+            'body { background: rgb(255,255,255) !important; color: rgb(0,0,0) !important; }' +
+            'label, span, p, div, a { color: inherit !important; }' +
+            '.text-gray-500 { color: rgb(107,114,128) !important; }' +
+            /* Rounded inputs matching site search bar (both modes) */
+            'textarea, input[type="text"], input[type="email"], input {' +
+                'font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif !important;' +
+                'font-size: .95em !important;' +
+                'padding: .6em 1em !important;' +
+                'border: 1px solid rgba(0,0,0,.2) !important;' +
+                'border-radius: .5em !important;' +
+                'outline: none !important;' +
+                'box-sizing: border-box !important;' +
+            '}' +
+            'textarea:focus, input:focus { border-color: rgb(3,102,214) !important; }' +
+            /* Button styling (both modes) */
+            'button {' +
+                'font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif !important;' +
+                'font-size: .95em !important;' +
+                'padding: .5em 1.2em !important;' +
+                'border-radius: .5em !important;' +
+                'border: 1px solid rgba(0,0,0,.2) !important;' +
+                'cursor: pointer !important;' +
+                'transition: opacity .2s ease !important;' +
+            '}' +
+            'button:hover { opacity: .8 !important; }' +
+            /* Dark mode LAST so it overrides base styles */
+            '@media (prefers-color-scheme: dark) {' +
+                'body { background: rgb(0,0,0) !important; color: rgb(255,255,255) !important; }' +
+                '#root, label, span, p, div, a, button { color: rgb(255,255,255) !important; }' +
+                '.text-gray-500 { color: rgb(142,142,147) !important; }' +
+                '.text-gray-900 { color: rgb(255,255,255) !important; }' +
+                '.border-gray-200, .border { border-color: rgba(255,255,255,.2) !important; }' +
+                '.bg-gray-100 { background: rgba(255,255,255,.05) !important; }' +
+                '.bg-gray-200 { background: rgba(255,255,255,.1) !important; }' +
+                '.bg-blue-500 { background: rgb(64,156,255) !important; }' +
+                'blockquote { background: rgba(255,255,255,.05) !important; }' +
+                'textarea, input[type="text"], input[type="email"], input {' +
+                    'background: rgb(0,0,0) !important;' +
+                    'color: rgb(255,255,255) !important;' +
+                    'border: 1px solid rgba(255,255,255,.2) !important;' +
+                    'border-radius: .5em !important;' +
+                '}' +
+                'textarea:focus, input:focus { border-color: rgb(64,156,255) !important; }' +
+                'button {' +
+                    'border: 1px solid rgba(255,255,255,.2) !important;' +
+                    'border-radius: .5em !important;' +
+                    'background: transparent !important;' +
+                    'color: rgb(255,255,255) !important;' +
+                '}' +
+                '.text-center.text-gray-500 { color: rgb(142,142,147) !important; }' +
+                '.text-center.text-gray-500 a { color: rgb(142,142,147) !important; }' +
+            '}';
+
+        target.appendChild = function(node) {
+            if (node.tagName === 'IFRAME' && node.srcdoc) {
+                node.srcdoc = node.srcdoc.replace('color-scheme: light;', 'color-scheme: light dark;');
+                node.srcdoc = node.srcdoc.replace('</style>', customCSS + '</style>');
+            }
+            return originalAppendChild(node);
+        };
+    })();
+    </script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 </div>
 {% endif %}
