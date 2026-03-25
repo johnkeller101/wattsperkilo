@@ -1,5 +1,7 @@
 # Site
 name: 'Watts Per Kilo'
+title: 'Watts Per Kilo'
+title_separator: '-'
 description: 'The latest news, product reviews, builds, and ideas from the weight weenie cycling mindset'
 logo: 'assets/images/logo.jpg'
 favicon: 'assets/images/favicon.ico'

@@ -7,18 +7,18 @@ image: assets/images/ztto-gen3.jpg
 outline: assets/images/outlines/ztto-gen-3.svg
 summary: "An ultralight 12-speed cassette at ~135g and ~$90. Shifts well and saves serious weight, but every one I've owned developed an unfixable creak within a few hundred miles. I've gone back to Dura-Ace."
 date: 2026-03-06
+last_modified_at: 2026-03-25
 ---
 
-The ZTTO SLR Gen3 is a ridiculously light 12-speed road cassette, around 135g for the 11-30T, at a fraction of what Shimano or SRAM charge for their top-tier options. It shifts well, it's compatible with standard Shimano HG freehubs, and it looks great. I've been through four of them. They all eventually start creaking.
+The ZTTO SLR Gen3 is a ridiculously light 12-speed road cassette, around 160g for the 11-34T, at a fraction of what Shimano or SRAM charge for their top-tier options. It shifts well, it's compatible with standard Shimano HG freehubs, and it looks great. I've been through four of them. They all eventually start creaking.
 
 ### Overview
 
-|   | ZTTO SLR Gen3 | Shimano Dura-Ace (R9200) | SRAM Red AXS | Shimano Ultegra (R8100) |
-|---|---|---|---|---|
-| Weight (11-30T) | ~135g | ~223g | ~215g | ~291g |
-| Price (USD) | ~$90 | ~$300 | ~$400 | ~$150 |
-| Speeds | 12 | 12 | 12 | 12 |
-| Material | 7075 alloy + steel | Ti + steel | Steel | Steel |
+|   | ZTTO SLR Gen3 | Shimano Dura-Ace (R9200) | Shimano Ultegra (R8100) |
+|---|---|---|---|
+| Weight (11-34T) | ~160g | ~253g | ~341g |
+| Price (USD) | ~$90 | ~$300 | ~$150 |
+| Material | 7075 alloy + steel | Ti + steel | Steel |
 
 <img src="{{ site.baseurl }}/assets/images/ztto-gen3.jpg" style="display:block; margin-left: auto; margin-right: auto; max-height:400px;">
 
@@ -26,7 +26,7 @@ The ZTTO SLR Gen3 is a ridiculously light 12-speed road cassette, around 135g fo
 
 - **Speeds:** 12
 - **Ratios:** 11-28T, 11-30T, 11-32T, 11-34T, 11-36T
-- **Weight:** ~133g (11-28T), ~135g (11-30T), ~143g (11-32T), ~162g (11-34T)
+- **Weight:** ~133g (11-28T), ~135g (11-30T), ~143g (11-32T), ~160g (11-34T)
 - **Material:** 7075-T6 aluminum (3 largest cogs), hardened steel (remaining cogs)
 - **Freehub:** Shimano HG (standard 11-speed road freehub, 36.8mm)
 - **Construction:** CNC machined

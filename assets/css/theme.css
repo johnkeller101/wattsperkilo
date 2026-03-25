@@ -427,6 +427,7 @@ ul.post-list li {
 }
 
 .featured-image-container .outline-image {
+    width: 100%;
     max-width: 600px;
     max-height: 500px;
     object-fit: contain;
