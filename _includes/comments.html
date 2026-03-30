@@ -72,41 +72,51 @@
                 '.text-center.text-gray-500 a { color: rgb(142,142,147) !important; }' +
             '}';
 
-        // Script injected into the iframe to observe content size changes
-        // and post the height back to the parent for seamless resizing
-        var resizeScript =
-            '<script>' +
-                'function _postHeight(){' +
-                    'var h=document.documentElement.scrollHeight;' +
-                    'window.parent.postMessage({from:"cusdis",event:"resize",data:h},"*");' +
-                '}' +
-                'new ResizeObserver(_postHeight).observe(document.body);' +
-                'new MutationObserver(_postHeight).observe(document.body,{childList:true,subtree:true,attributes:true});' +
-                'window.addEventListener("load",_postHeight);' +
-            '<\/script>';
-
         target.appendChild = function(node) {
             if (node.tagName === 'IFRAME' && node.srcdoc) {
                 node.srcdoc = node.srcdoc.replace('color-scheme: light;', 'color-scheme: light dark;');
                 node.srcdoc = node.srcdoc.replace('</style>', customCSS + '</style>');
-                // Inject resize observer before closing body
-                node.srcdoc = node.srcdoc.replace('</body>', resizeScript + '</body>');
-                // Ensure no iframe-level scrollbar — parent handles all scrolling
+                // Disable iframe scrolling — parent page handles all scroll
                 node.style.overflow = 'hidden';
                 node.scrolling = 'no';
+                node.setAttribute('scrolling', 'no');
             }
             return originalAppendChild(node);
         };
 
-        // Listen for resize messages from the iframe and update height
-        window.addEventListener('message', function(e) {
-            if (e.data && e.data.from === 'cusdis' && e.data.event === 'resize') {
-                var iframe = target.querySelector('iframe');
-                if (iframe) {
-                    iframe.style.height = e.data.data + 'px';
+        // Resize the iframe to match its content height.
+        // srcdoc iframes are same-origin so we can read contentDocument directly,
+        // bypassing the broken postMessage resize in cusdis.es.js.
+        function syncHeight() {
+            var iframe = target.querySelector('iframe');
+            if (!iframe || !iframe.contentDocument || !iframe.contentDocument.body) return;
+            var h = iframe.contentDocument.documentElement.scrollHeight;
+            if (h && h > 0) {
+                iframe.style.height = h + 'px';
+            }
+        }
+
+        // Observe the iframe appearing, then watch its content for changes
+        new MutationObserver(function(mutations) {
+            for (var i = 0; i < mutations.length; i++) {
+                for (var j = 0; j < mutations[i].addedNodes.length; j++) {
+                    var node = mutations[i].addedNodes[j];
+                    if (node.tagName === 'IFRAME') {
+                        node.addEventListener('load', function() {
+                            syncHeight();
+                            // Watch for DOM changes inside the iframe (comments loading, form expand, etc.)
+                            var iframeBody = node.contentDocument.body;
+                            if (iframeBody) {
+                                new MutationObserver(syncHeight).observe(iframeBody, {
+                                    childList: true, subtree: true, attributes: true, characterData: true
+                                });
+                                new ResizeObserver(syncHeight).observe(iframeBody);
+                            }
+                        });
+                    }
                 }
             }
-        });
+        }).observe(target, { childList: true });
     })();
     </script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
