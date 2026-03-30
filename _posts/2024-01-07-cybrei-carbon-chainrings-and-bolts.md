@@ -1,4 +1,5 @@
 ---
+post_id: cybrei-carbon-chainrings-and-bolts
 layout: post
 title: "CYBREI Carbon Chainrings + Bolts"
 author: john

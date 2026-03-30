@@ -1,4 +1,5 @@
 ---
+post_id: sixwheel-cassette-review
 layout: post
 title:  "Sixwheel 12 Speed Cassette Review"
 author: john

@@ -1,4 +1,5 @@
 ---
+post_id: eliilee-x-novanta-crankarms
 layout: post
 title: "ELILEE X-Novanta Crankarms"
 author: john

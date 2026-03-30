@@ -1,4 +1,5 @@
 ---
+post_id: pro-cyclist-mcl-acl-recovery
 layout: post
 title:  "Pro Cyclist MCL + ACL Tear Recovery"
 author: john

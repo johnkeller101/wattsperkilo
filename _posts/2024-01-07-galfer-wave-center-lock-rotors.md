@@ -1,4 +1,5 @@
 ---
+post_id: galfer-wave-center-lock-rotors
 layout: post
 title: "Galfer Wave Center Lock Rotors"
 author: john

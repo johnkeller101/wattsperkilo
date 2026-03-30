@@ -1,4 +1,5 @@
 ---
+post_id: rrskit-3d-printed-titanium-computer-mount
 layout: post
 title: "RRSKIT 3D Printed Titanium Computer Mount"
 author: john

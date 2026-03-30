@@ -18,6 +18,14 @@ for file in $STAGED_POSTS; do
         continue
     fi
 
+    # Skip if only frontmatter changed (body content is identical)
+    # Extract body (everything after second "---") from both staged and HEAD versions
+    OLD_BODY=$(git show "HEAD:$file" 2>/dev/null | awk 'BEGIN{n=0} /^---$/{n++; if(n==2){found=1; next}} found{print}')
+    NEW_BODY=$(awk 'BEGIN{n=0} /^---$/{n++; if(n==2){found=1; next}} found{print}' "$file")
+    if [ "$OLD_BODY" = "$NEW_BODY" ]; then
+        continue
+    fi
+
     # Extract the original publish date from filename (YYYY-MM-DD prefix)
     FILENAME=$(basename "$file")
     PUBLISH_DATE=$(echo "$FILENAME" | grep -oE "^[0-9]{4}-[0-9]{2}-[0-9]{2}")

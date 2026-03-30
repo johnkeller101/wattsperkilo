@@ -1,4 +1,5 @@
 ---
+post_id: berk-lupina-short-saddle-review
 layout: post
 title:  "Berk Lupina Short Saddle Review"
 author: john

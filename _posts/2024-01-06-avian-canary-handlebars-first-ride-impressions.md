@@ -1,4 +1,5 @@
 ---
+post_id: avian-canary-handlebars-first-ride-impressions
 layout: post
 title: "Avian Canary Handlebars"
 author: john

@@ -1,4 +1,5 @@
 ---
+post_id: crw-craft-racing-works-cs5060
 layout: post
 title: "CRW Works CS5060"
 author: john

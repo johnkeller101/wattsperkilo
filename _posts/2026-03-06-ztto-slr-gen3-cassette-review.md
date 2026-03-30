@@ -1,4 +1,5 @@
 ---
+post_id: ztto-slr-gen3-cassette-review
 layout: post
 title: "ZTTO SLR Gen3 12s Road Cassette"
 author: john

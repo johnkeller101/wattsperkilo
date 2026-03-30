@@ -1,4 +1,5 @@
 ---
+post_id: xpedo-thrust-sl-review
 layout: post
 title:  "Xpedo Thrust SL Titanium Review"
 author: john
