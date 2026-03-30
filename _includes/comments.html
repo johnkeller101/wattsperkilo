@@ -72,13 +72,41 @@
                 '.text-center.text-gray-500 a { color: rgb(142,142,147) !important; }' +
             '}';
 
+        // Script injected into the iframe to observe content size changes
+        // and post the height back to the parent for seamless resizing
+        var resizeScript =
+            '<script>' +
+                'function _postHeight(){' +
+                    'var h=document.documentElement.scrollHeight;' +
+                    'window.parent.postMessage({from:"cusdis",event:"resize",data:h},"*");' +
+                '}' +
+                'new ResizeObserver(_postHeight).observe(document.body);' +
+                'new MutationObserver(_postHeight).observe(document.body,{childList:true,subtree:true,attributes:true});' +
+                'window.addEventListener("load",_postHeight);' +
+            '<\/script>';
+
         target.appendChild = function(node) {
             if (node.tagName === 'IFRAME' && node.srcdoc) {
                 node.srcdoc = node.srcdoc.replace('color-scheme: light;', 'color-scheme: light dark;');
                 node.srcdoc = node.srcdoc.replace('</style>', customCSS + '</style>');
+                // Inject resize observer before closing body
+                node.srcdoc = node.srcdoc.replace('</body>', resizeScript + '</body>');
+                // Ensure no iframe-level scrollbar — parent handles all scrolling
+                node.style.overflow = 'hidden';
+                node.scrolling = 'no';
             }
             return originalAppendChild(node);
         };
+
+        // Listen for resize messages from the iframe and update height
+        window.addEventListener('message', function(e) {
+            if (e.data && e.data.from === 'cusdis' && e.data.event === 'resize') {
+                var iframe = target.querySelector('iframe');
+                if (iframe) {
+                    iframe.style.height = e.data.data + 'px';
+                }
+            }
+        });
     })();
     </script>
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>

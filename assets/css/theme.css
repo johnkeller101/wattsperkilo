@@ -810,5 +810,6 @@ ul.post-list li {
 
 #cusdis_thread iframe {
     width: 100% !important;
-    min-height: 400px
+    min-height: 200px;
+    height: auto
 }
