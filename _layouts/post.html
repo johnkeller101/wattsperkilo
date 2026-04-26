@@ -7,14 +7,11 @@ layout: default
     <div id="article">
         <h1 class="title">{{ page.title }}</h1>
 
+        {% assign color_index_page = page.title | size | modulo: 6 | plus: 1 %}
         <div class="metadata">
-            {% if page.last_modified_at %}
-            Updated {{ page.last_modified_at | date: '%B %-d, %Y' }} · First published {{ page.date | date: '%B %-d, %Y' }}
-            {% else %}
-            {{ page.date | date: '%B %-d, %Y' }}
-            {% endif %}
+            <span class="metadata-date" data-post-date="{{ page.date | date: '%Y-%m-%d' }}" data-color-index="{{ color_index_page }}">{% if page.last_modified_at %}Updated {{ page.last_modified_at | date: '%B %-d, %Y' }} · First published {{ page.date | date: '%B %-d, %Y' }}{% else %}{{ page.date | date: '%B %-d, %Y' }}{% endif %}</span>
             {% if page.categories.size > 0 %}
-            · {% for category in page.categories %}<a class="category-link" href="{{site.baseurl}}/{{ category | downcase | replace: ' ', '-' }}/">{{ category | capitalize }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+            <span class="metadata-categories">{% for category in page.categories %}<a class="category-link" href="{{site.baseurl}}/{{ category | downcase | replace: ' ', '-' }}/">{{ category | capitalize }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
             {% endif %}
         </div>
 
@@ -78,15 +75,10 @@ layout: default
     <h3>Related</h3>
     <ul class="post-list">
         {% for post in related_posts %}
+        {% assign color_index = post.title | size | modulo: 6 | plus: 1 %}
         <li>
-            <a class="post-link" href="{{site.baseurl}}{{post.url}}">
-                <div class="meta">
-                    <h3 class="title">{{ post.title }}</h3>
-                    <p class="date">{{ post.date | date: '%B %-d, %Y' }}</p>
-                    <p class="description">{{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
-                </div>
+            <a class="post-link border-tint-{{ color_index }}" href="{{site.baseurl}}{{post.url}}">
                 {% if post.outline or post.image %}
-                {% assign color_index = post.title | size | modulo: 6 | plus: 1 %}
                 <div class="thumb">
                     {% if post.outline %}
                     <img class="outline-tint-{{ color_index }}" src="{{site.baseurl}}/{{ post.outline }}" alt="{{ post.title }}">
@@ -95,6 +87,11 @@ layout: default
                     {% endif %}
                 </div>
                 {% endif %}
+                <div class="meta">
+                    <h3 class="title">{{ post.title }}</h3>
+                    <p class="date" data-post-date="{{ post.date | date: '%Y-%m-%d' }}" data-color-index="{{ color_index }}">{{ post.date | date: '%B %-d, %Y' }}</p>
+                    <p class="description">{{ post.summary | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
+                </div>
             </a>
         </li>
         {% endfor %}

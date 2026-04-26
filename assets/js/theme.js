@@ -35,3 +35,55 @@
     });
 
 })();
+
+// "New" badge for recent posts
+(function() {
+    var threeDays = 3 * 24 * 60 * 60 * 1000;
+    var now = new Date();
+    document.querySelectorAll('[data-post-date]').forEach(function(el) {
+        var postDate = new Date(el.getAttribute('data-post-date') + 'T00:00:00');
+        if (now - postDate <= threeDays) {
+            var colorIndex = el.getAttribute('data-color-index') || '1';
+            var badge = document.createElement('span');
+            badge.className = 'badge-new badge-tint-' + colorIndex;
+            badge.textContent = 'New';
+            el.appendChild(badge);
+        }
+    });
+})();
+
+function toggleSearch() {
+    var container = document.getElementById('headerSearch');
+    var input = document.getElementById('lunrsearch');
+    var results = document.getElementById('searchResults');
+
+    container.classList.toggle('active');
+
+    if (container.classList.contains('active')) {
+        input.focus();
+    } else {
+        input.value = '';
+        if (results) {
+            results.style.display = 'none';
+            results.innerHTML = '';
+        }
+    }
+}
+
+// Close search when clicking outside
+document.addEventListener('click', function(e) {
+    var headerSearch = document.querySelector('.header-search');
+    if (headerSearch && !headerSearch.contains(e.target)) {
+        var container = document.getElementById('headerSearch');
+        var input = document.getElementById('lunrsearch');
+        var results = document.getElementById('searchResults');
+        if (container && container.classList.contains('active')) {
+            container.classList.remove('active');
+            input.value = '';
+            if (results) {
+                results.style.display = 'none';
+                results.innerHTML = '';
+            }
+        }
+    }
+});
