@@ -435,6 +435,12 @@ ul.post-list li {
     padding: 1rem
 }
 
+img[src$=".svg"] {
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
+}
+
 /* Outline color overlays — tints black SVGs via CSS filter */
 .outline-tint-1 { filter: invert(42%) sepia(50%) saturate(300%) hue-rotate(160deg) brightness(95%); } /* muted blue */
 .outline-tint-2 { filter: invert(42%) sepia(50%) saturate(300%) hue-rotate(280deg) brightness(95%); } /* muted purple */
