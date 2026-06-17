@@ -7,10 +7,13 @@ categories: [ handlebars, reviews ]
 outline: assets/images/outlines/avian-parus.svg
 summary: "Avian's lighter option at ~220g with T1100/graphene construction. A step up in weight savings from the Canary, with a stiffer feel. This review covers the original Parus, which has since been replaced by the Parus II."
 date: 2026-01-23
-last_modified_at: 2026-03-06
+last_modified_at: 2026-06-16
 ---
 
-After spending time on the [Canary](/avian-canary-handlebars-first-ride-impressions/), I decided to try Avian's lighter option, the Parus. Avian doesn't make this one anymore. They replaced it with the Parus II, which runs $450 now. The original was $400 when I bought it. It's a separate model from the Canary, not a revision, and it dropped to around 220g using T1100 carbon and graphene with integrated molding instead of bonding. Weight varied by size, with 7g of that being stem bolts. For $400, that put it among the lightest integrated bars you could buy without spending Darimo money.
+**Update (June 2026):** This review covers the original Parus (Gen 1), which is no longer available for purchase. After approximately 2,500 miles, my bar developed a crack in the drop section. Avian replaced it with a Parus II free of charge. See the [cracking section below](#cracking) for details.
+{: .notice--warning}
+
+After spending time on the [Canary](/avian-canary-handlebars-first-ride-impressions/), I decided to try Avian's lighter option, the Parus. This is the original Gen 1 model, which Avian has since discontinued and replaced with the Parus II ($450). It's a separate model from the Canary, not a revision, and it dropped to around 220g using T1100 carbon and graphene with integrated molding instead of bonding. Weight varied by size, with 7g of that being stem bolts. For $400, that put it among the lightest integrated bars you could buy without spending Darimo money.
 
 ### Overview
 
@@ -80,13 +83,28 @@ Comfort on long rides is amazing, even better than the Canary. I've done multipl
 
 The raw carbon finish looks great in person. I picked up a matching Elita One seatpost from AliExpress and the aesthetic works really well together on my Aethos.
 
+### Cracking
+
+After around 2,500 miles, my Parus developed a crack in the drop section mid-ride. It happened on the left side, right where the drop curves into the hook. Luckily I noticed it before the bar failed completely. Here's what it looked like:
+
+![Parus crack from above](/assets/images/parus_crack_above.jpeg)
+
+![Parus crack from below](/assets/images/parus_crack_below.jpeg)
+
+I'm not the only one this happened to. Slayer of Grams on YouTube had the exact same failure on his Parus, on the opposite side:
+
+<iframe style="display: block; margin: 2rem auto; border-radius: 0.5rem; width: 100%; aspect-ratio: 16/9;" src="https://www.youtube.com/embed/DEkGkPbzRGI" frameborder="0" allowfullscreen></iframe>
+
+And here's my bar cracking mid-ride, in a very similar spot but on the other side:
+
+<iframe style="display: block; margin: 2rem auto; border-radius: 0.5rem; max-width: 350px; width: 100%; aspect-ratio: 9/16;" src="https://www.youtube.com/embed/AupfN1N621o" frameborder="0" allowfullscreen></iframe>
+
+To their credit, Avian sent me a brand new Parus II completely free of charge as a replacement. I'm currently testing the V2 and so far so good. Will update this post or write a separate review once I have more miles on it.
+
 ### Verdict
 
-I had two different Canary bars and the Parus was a clear step up in stiffness and ride feel. For $400 and ~220g, nothing else came close on value. The Parus II is mostly the same bar with an updated carbon layup that drops the claimed weight to 210g. If you're shopping now that's what you'll find at $450. I haven't ridden it yet, but the original was good enough that I'd be looking at one if I needed another bar.
+I had two different Canary bars and the Parus was a clear step up in stiffness and ride feel. For $400 and ~220g, nothing else came close on value. However, the cracking issue is a serious concern and likely the reason Avian discontinued this model in favor of the Parus II. You can no longer buy the Gen 1, which is probably for the best.
 
-<span style="margin:auto; display:table;">
-<a target="_blank" href="https://avians.cc/products/avian-parus" class="btn btn-outline-success btn-lg btn-round ml-1">View Parus II on Avian</a>
-</span>
+The Parus II is mostly the same bar with an updated carbon layup that drops the claimed weight to 210g and is available at $450. I'm testing it now and will report back.
 
-
-Disclosure: I purchased this with my own money. I have had no communication with the manufacturer and all thoughts/opinions are my own.
+Disclosure: I purchased the original Parus with my own money. After the cracking issue, Avian sent me a Parus II at no cost as a warranty replacement.
