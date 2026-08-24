@@ -13,6 +13,9 @@ date: 2026-08-24
 
 7.6 miles, 4,700 feet. Averages 12%, goes to 18% for long stretches, finishes with a 22% wall. Here's everything on the bike.
 
+<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dcb_7ITSho2/" data-instgrm-version="14" style="width:100%;"></blockquote>
+<script async src="//www.instagram.com/embed.js"></script>
+
 ### Total Weight
 
 | Category | Weight |
