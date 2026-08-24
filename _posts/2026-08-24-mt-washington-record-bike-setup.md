@@ -70,7 +70,7 @@ The THM Clavicula SE Power is 337g with a power meter built in. The compression 
 |---|---|
 | [Lewis BB2-Ti flat mount calipers + hoses](/lewis-bb2-ti-brake-calipers-review/) | 208 g |
 | [Galfer 160mm rotor, front](/galfer-wave-center-lock-rotors/) | 77 g |
-| [Galfer 140mm rotor, rear](/galfer-wave-center-lock-rotors/) | 94 g |
+| [Galfer 140mm rotor, rear](/galfer-wave-center-lock-rotors/) | 9we4 g |
 
 ![Galfer Wave rotors]({{ site.baseurl }}/assets/images/galfer_wave_thumb.jpg)
 
@@ -129,5 +129,3 @@ The Xpedo SONIK pedals are 188g, about 40g lighter than Dura-Ace. The Gelu K-3 i
 
 Disclosure: I purchased all components with my own money unless otherwise noted. No affiliate links.
 
-Sources:
-- [2026 Mount Washington Bicycle Hillclimb Results](https://www.granfondoguide.com/Contents/IndexFull/9330/2026-mount-washington-bicycle-hillclimb-results-john-keller-sets-new-record-time)
