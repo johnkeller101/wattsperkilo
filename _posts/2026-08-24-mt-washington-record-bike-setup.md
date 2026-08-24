@@ -129,5 +129,3 @@ The Xpedo SONIK pedals are 188g, about 40g lighter than Dura-Ace. The Gelu K-3 i
 
 Disclosure: I purchased all components with my own money unless otherwise noted. No affiliate links.
 
-Sources:
-- [2026 Mount Washington Bicycle Hillclimb Results](https://www.granfondoguide.com/Contents/IndexFull/9330/2026-mount-washington-bicycle-hillclimb-results-john-keller-sets-new-record-time)
