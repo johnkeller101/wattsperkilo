@@ -16,6 +16,8 @@ date: 2026-08-24
 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Dcb_7ITSho2/" data-instgrm-version="14" style="width:100%;"></blockquote>
 <script async src="//www.instagram.com/embed.js"></script>
 
+<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="19753087763" data-style="standard" data-from-embed="false" data-token="NH4zc6cE2uTB82aQSsDUnNy3rOjoIf8_hgoDfNQhPKw"></div><script src="https://strava-embeds.com/embed.js"></script>
+
 ### Total Weight
 
 | Category | Weight |
