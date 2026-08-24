@@ -134,6 +134,5 @@ Disclosure: I purchased all components with my own money unless otherwise noted.
 
 ---
 
-<div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="19753087763" data-style="standard" data-token="NH4zc6cE2uTB82aQSsDUnNy3rOjoIf8_hgoDfNQhPKw"></div>
-<script src="https://strava-embeds.com/embed.js"></script>
+<iframe src="https://strava-embeds.com/activity/19753087763" height="405" width="100%" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
 
