@@ -1,17 +1,17 @@
 ---
 post_id: mt-washington-record-bike-setup
 layout: post
-title: "Mt. Washington Record Bike Setup — 47:21"
+title: "Mt. Washington Record Bike Setup — 47:19"
 author: john
 categories: [ builds ]
 image: assets/images/mt-washington-header.jpeg
-summary: "Full spec breakdown of the bike I rode to set the all-time Mt. Washington Auto Road Bicycle Hillclimb record on August 15, 2026. 47:21 — the fastest anyone has ever ridden the mountain."
+summary: "Full spec breakdown of the bike I rode to set the all-time Mt. Washington Auto Road Bicycle Hillclimb record on August 15, 2026. 47:19 — the fastest anyone has ever ridden the mountain."
 date: 2026-08-24
 ---
 
-47:21 on August 15, 2026. Tom Danielson ran 49:24 in 2002 — stripped for doping. Ian Boswell ran 50:15 last year. Clean, all-time, [this is it](https://www.granfondoguide.com/Contents/IndexFull/9330/2026-mount-washington-bicycle-hillclimb-results-john-keller-sets-new-record-time).
+[47:19](https://www.granfondoguide.com/Contents/IndexFull/9330/2026-mount-washington-bicycle-hillclimb-results-john-keller-sets-new-record-time). Over two minutes faster than Danielson's 49:24 from 2002, which was later stripped for doping. This climb has a long history of top pros coming over fresh off the Tour — careers were made here. I'd wanted to do it for years and finally showed up this August, first time on the mountain, with a full-time job and a 10.8 lb bike.
 
-7.6 miles, 4,700 feet, averaging 12% with extended stretches at 18% and a final 22% wall. The bike matters on a climb like this. Here's everything on it.
+7.6 miles, 4,700 feet. Averages 12%, goes to 18% for long stretches, finishes with a 22% wall. Here's everything on the bike.
 
 ### Total Weight
 
@@ -38,7 +38,7 @@ date: 2026-08-24
 | Mcfk Sub5 UD carbon seat clamp | 6 g |
 | Schmolke carbon shifter clamps | 8 g |
 
-The Darimo IX2 is one of the lightest stems you can buy at 122g. The Ellipse is a flat-top bar, 40cm wide, 89g. The Darimo T1 Loop seatpost gets to 82g by ditching the metal clamp head entirely — two Dyneema loops wrap the saddle rails instead. Sounds sketchy, works fine. Schmolke shifter clamps are 7g over stock Shimano aluminum. Not exciting, but they add up.
+Darimo IX2 stem, 122g. Ellipse bar, flat-top, 40cm, 89g. The T1 Loop seatpost gets to 82g because it uses Dyneema loops instead of a metal clamp head — two loops around the saddle rails, tighten against barrel nuts. Sounds like something that shouldn't work. It does. Schmolke shifter clamps are carbon replacements for the stock Shimano aluminum bands. 7g. That's it.
 
 ---
 
@@ -60,7 +60,7 @@ The Darimo IX2 is one of the lightest stems you can buy at 122g. The Ellipse is 
 
 ![ZTTO SLR Gen3 cassette]({{ site.baseurl }}/assets/images/ztto-gen3.jpg)
 
-The THM Clavicula SE Power is 337g with a power meter built in. The compression system has caused me problems on training bikes — creak issues, ongoing headaches — but I trust it for a single race day. 34/34 up front and back, so 1:1 on the steepest pitches. The [ZTTO cassette](/ztto-slr-gen3-cassette-review/) is a gamble: every one I've owned eventually develops a creak that won't go away. For a dry climb, I'll take the weight savings and deal with it later.
+THM Clavicula SE Power, 337g with a power meter. I've had creak issues with the compression system on training builds — bad enough that I've pulled it mid-ride. But for one day on a dry road I'll take the risk. 34/34 gearing. The [ZTTO cassette](/ztto-slr-gen3-cassette-review/) will probably creak by next week. Every one I've owned has. Today it doesn't matter.
 
 ---
 
@@ -74,7 +74,7 @@ The THM Clavicula SE Power is 337g with a power meter built in. The compression 
 
 ![Galfer Wave rotors]({{ site.baseurl }}/assets/images/galfer_wave_thumb.jpg)
 
-The [Lewis BB2-Ti calipers](/lewis-bb2-ti-brake-calipers-review/) are titanium, 76g each, 208g with hoses. Dura-Ace R9200 is 97g per caliper. Braking feel is worse than Shimano — noticeably so on long descents. Washington doesn't have long descents, so they're on. The [Galfer Wave rotors](/galfer-wave-center-lock-rotors/) are my standard choice — Carbon-Ti weight, a fraction of the price.
+[Lewis BB2-Ti calipers](/lewis-bb2-ti-brake-calipers-review/), 76g each, 208g with hoses. Dura-Ace runs 97g per caliper. The feel is a step down from Shimano — you notice it on anything fast and steep. Washington goes one direction, so I don't care. [Galfer Wave rotors](/galfer-wave-center-lock-rotors/).
 
 ---
 
@@ -89,7 +89,7 @@ The [Lewis BB2-Ti calipers](/lewis-bb2-ti-brake-calipers-review/) are titanium, 
 | HyperSmart3 rear hub | 150.3 g |
 | Alu rotor bolts | 13 g |
 
-Custom build: Light Bicycle AR25 rims, HyperSmart3 hubs, carbon spokes with Sapim gold nipples. The AR25 is 25mm internal, hookless, and I've had no issues with the rims across multiple builds. I went with name-brand carbon spokes here after breaking three AliExpress spokes on a previous build. 872g total for a road disc wheelset.
+Light Bicycle AR25 rims, HyperSmart3 hubs, carbon spokes with Sapim gold nipples. I snapped three AliExpress carbon spokes on a previous build so these are name-brand. 872g total.
 
 ---
 
@@ -108,7 +108,7 @@ Custom build: Light Bicycle AR25 rims, HyperSmart3 hubs, carbon spokes with Sapi
 
 ![Overfast carbon thru axle on scale]({{ site.baseurl }}/assets/images/overfast-scale.jpeg)
 
-694g frame, 250g fork. The Aethos is what it is. I've been on the [OVERFAST carbon thru axles](/overfast-carbon-thru-axle-review/) for nearly three years and 10,000 miles — 15g over stock, zero problems. The 3D printed top cap and bar ends are 4g combined. Yes, I weighed them.
+694g frame, 250g fork. [OVERFAST carbon thru axles](/overfast-carbon-thru-axle-review/) for three years and around 10,000 miles. Still on. 15g over stock. 3D printed top cap and bar ends, 4g combined. Yes I weighed them.
 
 ---
 
@@ -123,7 +123,7 @@ Custom build: Light Bicycle AR25 rims, HyperSmart3 hubs, carbon spokes with Sapi
 | Deda Traforato bar tape | 26 g |
 | VOXOM FH12 carbon cage | 12 g |
 
-The Xpedo SONIK pedals are 188g, about 40g lighter than Dura-Ace. The Gelu K-3 is a 45g AliExpress carbon saddle clone I've been riding for months without problems. Michelin Power Cup for tires — not the lightest, but I wasn't going to gamble on a flat at Washington. Ridenow TPU tubes at 19g each are the lightest tubes I've used that actually hold up.
+Xpedo SONIK pedals, 188g, roughly 40g under Dura-Ace. Gelu K-3 saddle, 45g, an AliExpress carbon clone I've been riding for a few months with no problems so far. Michelin Power Cup — heavier than some options but I've raced on them before and didn't want to think about tires. Ridenow TPU tubes, 19g each.
 
 ---
 
